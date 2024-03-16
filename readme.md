@@ -28,3 +28,5 @@ nix build --system aarch64-linux --json \
   | jq -r '.[].outputs | to_entries[].value' \
   | cachix push rcmast3r
 ```
+
+to get the boot log: `journalctl -b`

@@ -13,7 +13,7 @@
 
   };
   outputs = { self, nixpkgs, hytech_data_acq, raspberry-pi-nix }: rec {
-    
+
     shared_config = {
       nixpkgs.overlays = [ (hytech_data_acq.overlays.default) ];
 
@@ -47,7 +47,7 @@
       ];
       networking.useDHCP = false;
       # users.extraUsers.nixos.openssh.extraConfig = "AddressFamily = any";
-      # networking.hostname = "hytech-pi";
+      networking.hostName = "hytech-pi";
       networking.firewall.enable = false;
       networking.wireless = {
         enable = true;
@@ -93,14 +93,14 @@
 
     can_config = {
       networking.can.enable = true;
-
       networking.can.interfaces = {
         can0 = {
           bitrate = 500000;
         };
       };
     };
-    pi4_config = { pkgs, lib, ... }:
+
+    pi4_config_normal = { pkgs, lib, ... }:
       {
         nix.settings.require-sigs = false;
         users.users.nixos.group = "nixos";
@@ -114,50 +114,25 @@
           mkdir -p /home/nixos/recordings
           chown nixos:users /home/nixos/recordings
         '';
-
-        hardware = {
-          bluetooth.enable = true;
-          raspberry-pi = {
-            config = {
-              all = {
-                base-dt-params = {
-                  #           # enable autoprobing of bluetooth driver
-                  #           # https://github.com/raspberrypi/linux/blob/c8c99191e1419062ac8b668956d19e788865912a/arch/arm/boot/dts/overlays/README#L222-L224
-                  krnbt = {
-                    enable = true;
-                    value = "on";
-                  };
-                  spi = {
-                    enable = true;
-                    value = "on";
-                  };
-                };
-                dt-overlays = {
-                  spi-bcm2835 = {
-                    enable = true;
-                    params = { };
-                  };
-                  # TODO change this as needed
-                  mcp2515-can0 = {
-                    enable = true;
-                    params = {
-                      oscillator =
-                        {
-                          enable = true;
-                          value = "16000000";
-                        };
-                      interrupt = {
-                        enable = true;
-                        value = "16"; # this is the individual gpio number for the interrupt of the spi boi
-                      };
-                    };
-                  };
-                };
-              };
-            };
-          };
-        };
       };
+    nixosConfigurations.rpi4-base = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      modules = [
+        (
+          { pkgs, ... }: {
+            config = {
+              environment.systemPackages = [
+                pkgs.can-utils
+              ];
+              sdImage.compressImage = false;
+            };
+          }
+        )
+        (shared_config)
+        pi4_config_normal
+        raspberry-pi-nix.nixosModules.raspberry-pi
+      ];
+    };
     # shoutout to https://github.com/tstat/raspberry-pi-nix absolute goat
     nixosConfigurations.rpi4 = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
@@ -175,39 +150,46 @@
             options = {
               services.data_writer.options.enable = true;
             };
-            
-
-
           }
         )
         (can_config)
         (shared_config)
         raspberry-pi-nix.nixosModules.raspberry-pi
-        pi4_config
+        pi4_config_normal
+
+        ./hw/tcu_hardware.nix
       ];
     };
-
-    nixosConfigurations.rpi3 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.rpi3-mini-tcu = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
       modules = [
-        "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-installer.nix"
         ./modules/data_acq.nix
+        ./modules/can_network.nix
         (
-          { ... }: {
+          { pkgs, ... }: {
             config = {
+              environment.systemPackages = [
+                pkgs.can-utils
+              ];
               sdImage.compressImage = false;
             };
             options = {
               services.data_writer.options.enable = true;
             };
-
           }
         )
+        (can_config)
         (shared_config)
+        raspberry-pi-nix.nixosModules.raspberry-pi
+        pi4_config_normal
+        ./hw/mini_tcu_hardware.nix
       ];
     };
+    
+    images.rpi4-base = nixosConfigurations.rpi4-base.config.system.build.sdImage;
     images.rpi4 = nixosConfigurations.rpi4.config.system.build.sdImage;
-    images.rpi3 = nixosConfigurations.rpi3.config.system.build.sdImage;
+    images.rpi3-mini-tcu = nixosConfigurations.rpi3-mini-tcu.config.system.build.sdImage;
+
     defaultPackage.aarch64-linux = nixosConfigurations.rpi4.config.system.build.toplevel;
   };
 }
