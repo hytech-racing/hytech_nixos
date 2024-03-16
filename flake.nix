@@ -9,6 +9,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
     hytech_data_acq.url = "github:RCMast3r/data_acq";
+    hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/29";
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix";
 
   };
@@ -45,9 +46,9 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPhMu3LzyGPjh0WkqV7kZYwA+Hyd2Bfc+1XQJ88HeU4A rcmast3r1@gmail.com"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZRFnx0tlpUAFqnEqP2R/1y8oIAPXhL2vW/UU727vw8 eddsa-key-Pranav"
       ];
-      networking.useDHCP = false;
+      networking.useDHCP = true;
       # users.extraUsers.nixos.openssh.extraConfig = "AddressFamily = any";
-      # networking.hostname = "hytech-pi";
+      networking.hostName = "hytech-pi";
       networking.firewall.enable = false;
       networking.wireless = {
         enable = true;
@@ -56,15 +57,15 @@
       };
 
       # networking.defaultGateway.address = "192.168.84.243";
-      networking.interfaces.wlan0.ipv4.addresses = [{
-        address = "192.168.143.69";
-        prefixLength = 24;
-      }];
+      # networking.interfaces.wlan0.ipv4.addresses = [{
+      #   address = "192.168.143.69";
+      #   prefixLength = 24;
+      # }];
 
       networking.interfaces.end0.ipv4 = {
         addresses = [
           {
-            address = "192.168.1.100"; # Your static IP address
+            address = "192.168.1.69"; # Your static IP address
             prefixLength = 24; # Netmask, 24 for 255.255.255.0
           }
         ];
@@ -76,7 +77,7 @@
           }
         ];
       };
-      networking.nameservers = [ "192.168.1.1" ]; # Your DNS server, often the gateway
+      # networking.nameservers = [ "192.168.143.1" ]; # Your DNS server, often the gateway
 
       systemd.services.wpa_supplicant.wantedBy =
         nixpkgs.lib.mkOverride 10 [ "default.target" ];
@@ -169,14 +170,13 @@
             config = {
               environment.systemPackages = [
                 pkgs.can-utils
+                pkgs.ethtool
               ];
               sdImage.compressImage = false;
             };
             options = {
               services.data_writer.options.enable = true;
             };
-            
-
 
           }
         )
