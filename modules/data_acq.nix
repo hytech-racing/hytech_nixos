@@ -35,6 +35,7 @@ in {
           let
             script = pkgs.writeScript "configure-lte-modem" ''
               qmicli=${pkgs.libqmi}/bin/qmicli
+              udhcpc=${pkgs.busybox}/bin/udhcpc
               ip=${pkgs.iproute2}/bin/ip
               # wait a bit until the device is (hopefully) ready
               sleep 20;
@@ -60,6 +61,8 @@ in {
               $ip link set $iface up
               # register v4
               $qmicli -p -d $device --wds-start-network="ip-type=4,apn=fast.t-mobile.com" --client-no-release-cid
+
+              $udhcpc -q -f -i wwan0
             '';
           in
 
