@@ -5,6 +5,12 @@
     # ./rpi4
     ./rpi3
   ];
+  
+  # pkgs.python310
+  environment.systemPackages = [
+    pkgs.busybox
+    pkgs.libqmi
+  ];
 
   virtualisation.docker.enable = true;
   users.users.nixos.extraGroups = [ "docker" ];
