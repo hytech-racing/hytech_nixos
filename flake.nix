@@ -8,15 +8,15 @@
   };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
-    hytech_data_acq.url = "github:RCMast3r/data_acq";
-    hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/29";
+    hytech_data_acq.url = "github:RCMast3r/data_acq/2024-03-18T20_52_15";
+    hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/31";
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix";
 
   };
   outputs = { self, nixpkgs, hytech_data_acq, raspberry-pi-nix }: rec {
     
     shared_config = {
-      nixpkgs.overlays = [ (hytech_data_acq.overlays.default) ];
+      nixpkgs.overlays = hytech_data_acq.overlays.aarch64-linux;
 
       # nixpkgs.config.allowUnsupportedSystem = true;
       nixpkgs.hostPlatform.system = "aarch64-linux";
@@ -171,8 +171,9 @@
               environment.systemPackages = [
                 pkgs.can-utils
                 pkgs.ethtool
+                pkgs.python3
               ];
-              sdImage.compressImage = false;
+              # sdImage.compressImage = false;
             };
             options = {
               services.data_writer.options.enable = true;

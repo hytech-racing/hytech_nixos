@@ -19,6 +19,24 @@
         "type": "github"
       }
     },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "foxglove-websocket": {
       "inputs": {
         "nixpkgs": "nixpkgs_2",
@@ -44,15 +62,16 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1710616000,
-        "narHash": "sha256-i7HF2iGmfG52tlbW4iSgQy6iMH6LZ176Z2RiSU5hELw=",
+        "lastModified": 1710728100,
+        "narHash": "sha256-VfFJQMc9ejAGTUkS0u9UEYgInfOme2fWtCGdaZo0/l8=",
         "owner": "hytech-racing",
         "repo": "ht_can",
-        "rev": "33672183860df859e53dc644bae8824405dd92c0",
+        "rev": "42712d3b77241a4356d316bdf4c5faa78724b6a6",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
+        "ref": "31",
         "repo": "ht_can",
         "type": "github"
       }
@@ -60,6 +79,7 @@
     "hytech_data_acq": {
       "inputs": {
         "asyncudp": "asyncudp",
+        "flake-utils": "flake-utils",
         "foxglove-websocket": "foxglove-websocket",
         "ht_can_pkg_flake": "ht_can_pkg_flake",
         "mcap": "mcap",
@@ -69,15 +89,16 @@
         "utils": "utils_6"
       },
       "locked": {
-        "lastModified": 1708541689,
-        "narHash": "sha256-G3WtqSCrbAp3SWZI9T2MHfZ/Bq2q41CNSeZrDvGSUZg=",
+        "lastModified": 1710795046,
+        "narHash": "sha256-CHHZCOepb8pil2Mg0oTfRD+fei12mFJ4sEvbrE0kNdw=",
         "owner": "RCMast3r",
         "repo": "data_acq",
-        "rev": "4e92293cb712b34f2534edce2932eb8b5c57ca0d",
+        "rev": "226c2ffef51ecadbcad2a69479052d03d0de496d",
         "type": "github"
       },
       "original": {
         "owner": "RCMast3r",
+        "ref": "2024-03-18T20_52_15",
         "repo": "data_acq",
         "type": "github"
       }
@@ -539,6 +560,21 @@
         "type": "github"
       }
     },
+    "systems_7": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "u-boot-src": {
       "flake": false,
       "locked": {
@@ -572,7 +608,7 @@
     },
     "utils_2": {
       "inputs": {
-        "systems": "systems_2"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1701680307,
@@ -590,7 +626,7 @@
     },
     "utils_3": {
       "inputs": {
-        "systems": "systems_3"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1705309234,
@@ -608,7 +644,7 @@
     },
     "utils_4": {
       "inputs": {
-        "systems": "systems_4"
+        "systems": "systems_5"
       },
       "locked": {
         "lastModified": 1701680307,
@@ -626,7 +662,7 @@
     },
     "utils_5": {
       "inputs": {
-        "systems": "systems_5"
+        "systems": "systems_6"
       },
       "locked": {
         "lastModified": 1701680307,
@@ -644,7 +680,7 @@
     },
     "utils_6": {
       "inputs": {
-        "systems": "systems_6"
+        "systems": "systems_7"
       },
       "locked": {
         "lastModified": 1701680307,

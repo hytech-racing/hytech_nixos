@@ -28,3 +28,9 @@ nix build --system aarch64-linux --json \
   | jq -r '.[].outputs | to_entries[].value' \
   | cachix push rcmast3r
 ```
+
+
+writing to sd card with `dd`. the `/dev/sd<>` should just point to the device and not an existing partition on the device (eg: `/dev/sdd`):
+```
+zstdcat <file.img.zst in result/> | sudo dd of=/dev/sd<change-me-pls> bs=4M status=progress oflag=direct
+```
