@@ -19,6 +19,12 @@ or
 4. `sudo /nix/store/<hash>-nixos-system-<version>/bin/switch-to-configuration switch`
 5. profit
 
+new workflow:
+
+- simply run
+```nix run github:serokell/deploy-rs --system aarch64-linux```
+
+
 notes:
 
 pushing to cachix (via emulated aarch64-linux):
