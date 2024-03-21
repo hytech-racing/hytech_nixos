@@ -14,11 +14,17 @@
 
   };
   outputs = { self, nixpkgs, hytech_data_acq, raspberry-pi-nix }: rec {
-    
-    shared_config = {
-      nixpkgs.overlays = hytech_data_acq.overlays.aarch64-linux;
 
-      # nixpkgs.config.allowUnsupportedSystem = true;
+    shared_config = {
+      nixpkgs.overlays = hytech_data_acq.overlays.aarch64-linux ++
+        [
+          (self: super: {
+            linux-router = super.linux-router.override {
+              useQrencode = false;
+            };
+          })
+        ];
+
       nixpkgs.hostPlatform.system = "aarch64-linux";
 
       systemd.services.sshd.wantedBy =
@@ -55,12 +61,10 @@
         interfaces = [ "wlan0" ];
         networks = { "yo" = { psk = "11111111"; }; };
       };
-
-      # networking.defaultGateway.address = "192.168.84.243";
-      # networking.interfaces.wlan0.ipv4.addresses = [{
-      #   address = "192.168.143.69";
-      #   prefixLength = 24;
-      # }];
+      networking.extraHosts =
+        ''
+          192.168.203.1 hytech-pi
+        '';
 
       networking.interfaces.end0.ipv4 = {
         addresses = [
@@ -77,7 +81,6 @@
           }
         ];
       };
-      # networking.nameservers = [ "192.168.143.1" ]; # Your DNS server, often the gateway
 
       systemd.services.wpa_supplicant.wantedBy =
         nixpkgs.lib.mkOverride 10 [ "default.target" ];
@@ -165,18 +168,21 @@
       modules = [
         ./modules/data_acq.nix
         ./modules/can_network.nix
+        ./modules/linux_router.nix
         (
           { pkgs, ... }: {
+
             config = {
               environment.systemPackages = [
                 pkgs.can-utils
                 pkgs.ethtool
                 pkgs.python3
               ];
-              # sdImage.compressImage = false;
             };
             options = {
               services.data_writer.options.enable = true;
+              services.linux_router.options.enable = true;
+              services.linux_router.options.host-ip = "192.168.203.1";
             };
 
           }
