@@ -169,6 +169,7 @@
         ./modules/data_acq.nix
         ./modules/can_network.nix
         ./modules/linux_router.nix
+        ./modules/data_acq_frontend.nix
         (
           { pkgs, ... }: {
 
@@ -183,6 +184,7 @@
               services.data_writer.options.enable = true;
               services.linux_router.options.enable = true;
               services.linux_router.options.host-ip = "192.168.203.1";
+              services.data_acq_frontend.enable = true;
             };
 
           }
