@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-    
+
     cfg = config.services.data_acq_frontend;
 in {
     config = {
