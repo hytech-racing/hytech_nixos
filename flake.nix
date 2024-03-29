@@ -211,10 +211,8 @@
 
     # Use nixos-generate to create the VM
     nixosConfigurations.vbi = nixos-generators.nixosGenerate {
-
       system = "x86_64-linux";
       format = "virtualbox";
-
       modules = [
         ./modules/data_acq.nix
         ./modules/data_acq_frontend.nix
@@ -223,6 +221,7 @@
             config = {
               environment.systemPackages = [
                 pkgs.python3
+                pkgs.nodejs
               ];
             };
             options = {
