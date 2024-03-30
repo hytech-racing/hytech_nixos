@@ -11,7 +11,8 @@ Connect to http://192.168.203.1:6969/ once on the `ht08` wifi.
 3. `scp nixos@192.168.203.1:/home/nixos/recordings/* .` (password is `nixos`)
 
 
-you may need to fix the mcap files as when they are not correctly closed (when we turn of LV it doesnt close the file correctly) you may
+#### fixing MCAP files that werent properly closed
+you may need to fix the mcap files as when they are not correctly closed (when we turn of LV it doesnt close the file correctly)
 ### developer deployment and usage
 pre-reqs:
 
