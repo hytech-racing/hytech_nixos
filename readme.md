@@ -2,7 +2,7 @@
 
 1. connect to the pi's local wifi network named `ht08`
 2. open a command prompt that has ssh installed (powershell or bash)
-3. `scp nixos@192.168.203.1:/home/nixos/recordings/* .`
+3. `scp nixos@192.168.203.1:/home/nixos/recordings/* .` (password is `nixos`)
 
 ### developer deployment and usage
 pre-reqs:
