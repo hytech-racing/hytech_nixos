@@ -1,9 +1,17 @@
 ### user docs for HyTech's pi
 
+#### starting and stopping recording
+
+Connect to http://192.168.203.1:6969/ once on the `ht08` wifi.
+
+#### getting files off the car
+
 1. connect to the pi's local wifi network named `ht08`
 2. open a command prompt that has ssh installed (powershell or bash)
 3. `scp nixos@192.168.203.1:/home/nixos/recordings/* .` (password is `nixos`)
 
+
+you may need to fix the mcap files as when they are not correctly closed (when we turn of LV it doesnt close the file correctly) you may
 ### developer deployment and usage
 pre-reqs:
 
