@@ -1,3 +1,10 @@
+### user docs for HyTech's pi
+
+1. connect to the pi's local wifi network named `ht08`
+2. open a command prompt that has ssh installed (powershell or bash)
+3. `scp nixos@192.168.203.1:/home/nixos/recordings/* .`
+
+### developer deployment and usage
 pre-reqs:
 
 - for non-nixOs systems that have the nix package manager installed:
