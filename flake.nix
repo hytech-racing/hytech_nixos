@@ -163,8 +163,9 @@
         };
       };
     # shoutout to https://github.com/tstat/raspberry-pi-nix absolute goat
-    nixosConfigurations.rpi4 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.tcu = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
+      specialArgs = { inherit self; };
       modules = [
         ./modules/data_acq.nix
         ./modules/can_network.nix
@@ -173,6 +174,7 @@
           { pkgs, ... }: {
 
             config = {
+              environment.etc."hytech_nixos".source = self;
               environment.systemPackages = [
                 pkgs.can-utils
                 pkgs.ethtool
@@ -193,28 +195,7 @@
         pi4_config
       ];
     };
-
-    nixosConfigurations.rpi3 = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      modules = [
-        "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-installer.nix"
-        ./modules/data_acq.nix
-        (
-          { ... }: {
-            config = {
-              sdImage.compressImage = false;
-            };
-            options = {
-              services.data_writer.options.enable = true;
-            };
-
-          }
-        )
-        (shared_config)
-      ];
-    };
-    images.rpi4 = nixosConfigurations.rpi4.config.system.build.sdImage;
-    images.rpi3 = nixosConfigurations.rpi3.config.system.build.sdImage;
-    defaultPackage.aarch64-linux = nixosConfigurations.rpi4.config.system.build.toplevel;
+    images.tcu = nixosConfigurations.tcu.config.system.build.sdImage;
+    tcu_top = nixosConfigurations.tcu.config.system.build.toplevel;
   };
 }

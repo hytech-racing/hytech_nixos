@@ -1,3 +1,6 @@
+### how to update CAN library on car
+
+1. ssh into
 pre-reqs:
 
 - for non-nixOs systems that have the nix package manager installed:
@@ -10,10 +13,8 @@ pre-reqs:
 
 typical workflow:
 
-1. build with either
-    - `nix build .#nixosConfigurations.rpi3.config.system.build.toplevel --system aarch64-linux`
-or
-    - `nix build .#nixosConfigurations.rpi4.config.system.build.toplevel --system aarch64-linux` for the pi 4
+1. build with 
+    - `nix build .#tcu_top --system aarch64-linux` for the tcu
 2. `nix-copy-closure --to nixos@192.168.143.69 result/` (will have store path as part of output to switch to)
 3. (ssh into pi)
 4. `sudo /nix/store/<hash>-nixos-system-<version>/bin/switch-to-configuration switch`
