@@ -70,6 +70,14 @@
       networking.useDHCP = true;
       networking.hostName = "hytech-pi";
       networking.firewall.enable = false;
+      networking.wireless = {
+        enable = true;
+        interfaces = [ "wlan0" ];
+      };
+      networking.extraHosts =
+        ''
+          192.168.203.1 hytech-pi
+        '';
 
 
       systemd.services.wpa_supplicant.wantedBy =
@@ -177,8 +185,9 @@
     };
 
     # shoutout to https://github.com/tstat/raspberry-pi-nix absolute goat
-    nixosConfigurations.rpi4 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.tcu = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
+      specialArgs = { inherit self; };
       modules = [
         ./modules/data_acq.nix
         ./modules/can_network.nix
@@ -187,6 +196,7 @@
         (
           { pkgs, ... }: {
             config = {
+              environment.etc."hytech_nixos".source = self;
               environment.systemPackages = [
                 pkgs.can-utils
                 pkgs.ethtool
@@ -240,5 +250,7 @@
     images.rpi4 = nixosConfigurations.rpi4.config.system.build.sdImage;
     images.rpi3 = nixosConfigurations.rpi3.config.system.build.sdImage;
     defaultPackage.aarch64-linux = nixosConfigurations.rpi4.config.system.build.toplevel;
+    images.tcu = nixosConfigurations.tcu.config.system.build.sdImage;
+    tcu_top = nixosConfigurations.tcu.config.system.build.toplevel;
   };
 }
