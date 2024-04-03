@@ -59,7 +59,6 @@
       networking.wireless = {
         enable = true;
         interfaces = [ "wlan0" ];
-        networks = { "yo" = { psk = "11111111"; }; };
       };
       networking.extraHosts =
         ''
