@@ -8,8 +8,8 @@
   };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
-    hytech_data_acq.url = "github:RCMast3r/data_acq/2024-03-18T20_52_15";
-    hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/31";
+    hytech_data_acq.url = "github:RCMast3r/data_acq/2024-03-24T23_30_44";
+    hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/46";
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix";
     deploy-rs.url = "github:serokell/deploy-rs";
   };
@@ -81,7 +81,6 @@
       networking.wireless = {
         enable = true;
         interfaces = [ "wlan0" ];
-        networks = { "yo" = { psk = "11111111"; }; };
       };
       networking.extraHosts =
         ''
@@ -173,8 +172,9 @@
         };
       };
     # shoutout to https://github.com/tstat/raspberry-pi-nix absolute goat
-    nixosConfigurations.rpi4 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.tcu = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
+      specialArgs = { inherit self; };
       modules = [
         ./modules/data_acq.nix
         ./modules/can_network.nix
@@ -183,6 +183,7 @@
           { pkgs, ... }: {
 
             config = {
+              environment.etc."hytech_nixos".source = self;
               environment.systemPackages = [
                 pkgs.can-utils
                 pkgs.ethtool
@@ -204,37 +205,17 @@
         pi4_config
       ];
     };
-
-    nixosConfigurations.rpi3 = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      modules = [
-        "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-installer.nix"
-        ./modules/data_acq.nix
-        (
-          { ... }: {
-            config = {
-              sdImage.compressImage = false;
-            };
-            options = {
-              services.data_writer.options.enable = true;
-            };
-          }
-        )
-        user_setup
-        (shared_config)
-      ];
-    };
-    images.rpi4 = nixosConfigurations.rpi4.config.system.build.sdImage;
-    images.rpi3 = nixosConfigurations.rpi3.config.system.build.sdImage;
-    defaultPackage.aarch64-linux = nixosConfigurations.rpi4.config.system.build.toplevel;
-
-    deploy.nodes.rpi3 = {
-      hostname = "192.168.86.36";
+    deploy.nodes.tcu = {
+      hostname = "192.168.203.1";
       profiles.system = {
         sshUser = "nixos";
-        user = "root";
-        path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.rpi3;
+
+        user = "nixos";
+        # sudo = "echo nixos | sudo -S";
+        path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.tcu;
       };
     };
+    images.tcu = nixosConfigurations.tcu.config.system.build.sdImage;
+    tcu_top = nixosConfigurations.tcu.config.system.build.toplevel;
   };
 }
