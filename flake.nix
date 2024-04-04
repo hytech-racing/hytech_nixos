@@ -101,7 +101,6 @@
         networking.wireless = {
           enable = true;
           interfaces = [ "wlan0" ];
-          networks = { "yo" = { psk = "11111111"; }; };
         };
         networking.extraHosts =
           ''
@@ -184,7 +183,6 @@
         ./modules/data_acq.nix
         ./modules/can_network.nix
         ./modules/linux_router.nix
-        ./modules/data_acq_frontend.nix
         (
           { pkgs, ... }: {
             config = {
@@ -200,7 +198,6 @@
               services.data_writer.options.enable = true;
               services.linux_router.options.enable = true;
               services.linux_router.options.host-ip = "192.168.203.1";
-              services.data_acq_frontend.enable = true;
             };
 
           }
@@ -218,18 +215,17 @@
       format = "virtualbox";
       modules = [
         ./modules/data_acq.nix
-        ./modules/data_acq_frontend.nix
         (
           { pkgs, ... }: {
             config = {
               environment.systemPackages = [
                 pkgs.python3
                 pkgs.nodejs
+                pkgs.simple-http-server
               ];
             };
             options = {
               services.data_writer.options.enable = true;
-              services.data_acq_frontend.enable = true;
             };
 
           }
