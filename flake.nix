@@ -193,6 +193,7 @@
                 pkgs.can-utils
                 pkgs.ethtool
                 pkgs.python3
+                pkgs.simple-http-server
               ];
             };
             options = {
