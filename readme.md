@@ -25,13 +25,14 @@ pre-reqs:
 - to build the flake defined image: `nix build .#images.rpi4 --system aarch64-linux`
 
 typical workflow:
-0. connect to `ht08` wifi network while tcu is on
+
 1. build with 
     - `nix build .#tcu_top --system aarch64-linux` for the tcu
-2. `nix-copy-closure --to nixos@192.168.203.1 result/` (will have store path as part of output to switch to. this exact store path will be switched to)
-3. (ssh into pi `ssh nixos@192.168.203.1`) password is `nixos`
-4. `sudo /nix/store/<hash>-nixos-system-<version>/bin/switch-to-configuration switch`
-5. profit
+2. connect to `ht08` wifi network while tcu is on
+3. `nix-copy-closure --to nixos@192.168.203.1 result/` (will have store path as part of output to switch to. this exact store path will be switched to)
+4. (ssh into pi `ssh nixos@192.168.203.1`) password is `nixos`
+5. `sudo /nix/store/<hash>-nixos-system-<version>/bin/switch-to-configuration switch`
+6. profit
 
 notes:
 
