@@ -209,7 +209,7 @@
               services.data_writer.options.enable = true;
               services.linux_router.options.enable = true;
               services.linux_router.options.host-ip = "192.168.203.1";
-              services.user.data_acq_frontend.options.enable = true;
+              services.user.data_acq_frontend.enable = true;
 
             };
 
