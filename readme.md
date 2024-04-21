@@ -26,13 +26,15 @@ pre-reqs:
 
 typical workflow:
 
-1. build with 
+1. Pull from Github
+2. Update nix flake with `nix flake update`
+4. build with 
     - `nix build .#tcu_top --system aarch64-linux` for the tcu
-2. connect to `ht08` wifi network while tcu is on
-3. `nix-copy-closure --to nixos@192.168.203.1 result/` (will have store path as part of output to switch to. this exact store path will be switched to)
-4. (ssh into pi `ssh nixos@192.168.203.1`) password is `nixos`
-5. `sudo /nix/store/<hash>-nixos-system-<version>/bin/switch-to-configuration switch`
-6. profit
+5. connect to `ht08` wifi network while tcu is on
+6. `nix-copy-closure --to nixos@192.168.203.1 result/` (will have store path as part of output to switch to. this exact store path will be switched to)
+7. (ssh into pi `ssh nixos@192.168.203.1`) password is `nixos`
+8. `sudo /nix/store/<hash>-nixos-system-<version>/bin/switch-to-configuration switch`
+9. profit
 
 notes:
 
