@@ -62,16 +62,16 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1711749509,
-        "narHash": "sha256-LavQOWZGGrgFMSr/28bMEj/xxkz8fgl8N8PPf7N5oiU=",
+        "lastModified": 1711750784,
+        "narHash": "sha256-1if7dpw7k+tGM3jRnV9Qzuue4XVfw7HZMVd7yc+e/DA=",
         "owner": "hytech-racing",
         "repo": "ht_can",
-        "rev": "7f293139b7124e66e55f2af2b463d4c9052ec478",
+        "rev": "805fbcb3890c3efc5664093227298f70450dbb92",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "40",
+        "ref": "41",
         "repo": "ht_can",
         "type": "github"
       }
@@ -89,15 +89,15 @@
         "utils": "utils_6"
       },
       "locked": {
-        "lastModified": 1711322957,
-        "narHash": "sha256-+WthrOqtpbr5J/tAUoSOOGcz+wS2bqJMJtChIwq1ab4=",
-        "owner": "RCMast3r",
+        "lastModified": 1713737686,
+        "narHash": "sha256-DnMYdqmgxJXk21mVzRIR+H2ZqOdJpf6LjlUbUk+gmnc=",
+        "owner": "hytech-racing",
         "repo": "data_acq",
-        "rev": "3047851ef286b0dc4c3f089a17e3af55d318aa14",
+        "rev": "cbbcc8c49f6b7baf8150eb5d7d06bee2c7ae8444",
         "type": "github"
       },
       "original": {
-        "owner": "RCMast3r",
+        "owner": "hytech-racing",
         "ref": "frontend",
         "repo": "data_acq",
         "type": "github"

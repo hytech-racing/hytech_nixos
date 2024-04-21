@@ -8,7 +8,7 @@
   };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
-    hytech_data_acq.url = "github:RCMast3r/data_acq/frontend";
+    hytech_data_acq.url = "github:hytech-racing/data_acq/frontend";
     hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/46";
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix";
     nixos-generators = {
@@ -201,13 +201,16 @@
                 pkgs.can-utils
                 pkgs.ethtool
                 pkgs.python3
+                pkgs.nodePackages.serve
+                pkgs.getconf
               ];
             };
             options = {
               services.data_writer.options.enable = true;
               services.linux_router.options.enable = true;
               services.linux_router.options.host-ip = "192.168.203.1";
-              services.data_acq_frontend.enable = true;
+              services.user.data_acq_frontend.options.enable = true;
+
             };
 
           }
@@ -236,7 +239,8 @@
             };
             options = {
               services.data_writer.options.enable = true;
-              services.data_acq_frontend.enable = true;
+              # services.data_acq_frontend.enable = true;
+              services.user.data_acq_frontend.options.enable = true;
             };
 
           }
