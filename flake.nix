@@ -9,7 +9,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
     hytech_data_acq.url = "github:hytech-racing/data_acq/2024-04-02T19_08_02";
-    hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/73";
+    hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/76";
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix";
 
   };
