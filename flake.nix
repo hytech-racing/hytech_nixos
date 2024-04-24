@@ -8,7 +8,7 @@
   };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
-    hytech_data_acq.url = "github:hytech-racing/data_acq/frontend-dropdown";
+    hytech_data_acq.url = "github:hytech-racing/data_acq/frontend";
     hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/46";
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix";
     nixos-generators = {
