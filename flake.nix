@@ -8,8 +8,10 @@
   };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
+
     hytech_data_acq.url = "github:hytech-racing/data_acq/frontend";
-    hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/46";
+    hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/80";
+
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -203,6 +205,8 @@
                 pkgs.python3
                 pkgs.nodePackages.serve
                 pkgs.getconf
+                pkgs.python311Packages.cantools
+                pkgs.ht_can_pkg
               ];
             };
             options = {
@@ -221,6 +225,7 @@
         pi4_config
       ];
     };
+
 
     # Use nixos-generate to create the VM
     nixosConfigurations.vbi = nixos-generators.nixosGenerate {
@@ -254,6 +259,7 @@
     images.rpi4 = nixosConfigurations.rpi4.config.system.build.sdImage;
     images.rpi3 = nixosConfigurations.rpi3.config.system.build.sdImage;
     defaultPackage.aarch64-linux = nixosConfigurations.rpi4.config.system.build.toplevel;
+
     images.tcu = nixosConfigurations.tcu.config.system.build.sdImage;
     tcu_top = nixosConfigurations.tcu.config.system.build.toplevel;
   };
