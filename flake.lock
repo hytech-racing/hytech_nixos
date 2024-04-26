@@ -62,16 +62,16 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1712638887,
-        "narHash": "sha256-rVzpjAHkESgCnBfNTAgECmZ4UsigBGWd0f+KR/WzcpU=",
+        "lastModified": 1714098101,
+        "narHash": "sha256-KCYJRj7b8TkeQbOfSrLOL1IP1i2KLIPom332VrcBJXU=",
         "owner": "hytech-racing",
         "repo": "ht_can",
-        "rev": "e21b490980c619460f3b8e39e97e7bb5d594ef3c",
+        "rev": "759e23cc9db031c9482e03f0a92c12d42c2f56d7",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "59",
+        "ref": "80",
         "repo": "ht_can",
         "type": "github"
       }
@@ -214,11 +214,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1708653715,
-        "narHash": "sha256-F7b+qNsQiIsA8QVLrz4GUakJvv2MkNKLltTGQXpJny0=",
+        "lastModified": 1709706423,
+        "narHash": "sha256-uL/H0zh/Ckz1o5vWdd2DiKSu2QAPlYDNiOzpSymbPao=",
         "owner": "notalltim",
         "repo": "nix-proto",
-        "rev": "995d23c3d6c52c9aceb8946adab966df2cbb1141",
+        "rev": "2ccac0a3f70bb84a485db60f1a7ac7688c992d92",
         "type": "github"
       },
       "original": {
@@ -376,11 +376,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1711124224,
-        "narHash": "sha256-l0zlN/3CiodvWDtfBOVxeTwYSRz93muVbXWSpaMjXxM=",
+        "lastModified": 1711460390,
+        "narHash": "sha256-akSgjDZL6pVHEfSE6sz1DNSXuYX6hq+P/1Z5IoYWs7E=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "56528ee42526794d413d6f244648aaee4a7b56c0",
+        "rev": "44733514b72e732bd49f5511bd0203dea9b9a434",
         "type": "github"
       },
       "original": {
@@ -720,11 +720,11 @@
         "systems": "systems_7"
       },
       "locked": {
-        "lastModified": 1705309234,
-        "narHash": "sha256-uNRRNRKmJyCRC/8y1RqBkqWBLM034y4qN7EprSdmgyA=",
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "1ef2e671c3b0c19053962c07dbda38332dcebf26",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
         "type": "github"
       },
       "original": {
