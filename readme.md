@@ -36,6 +36,7 @@ typical workflow:
 8. `sudo /nix/store/<hash>-nixos-system-<version>/bin/switch-to-configuration switch`
 9. profit
 
+
 notes:
 
 pushing to cachix (via emulated aarch64-linux):
