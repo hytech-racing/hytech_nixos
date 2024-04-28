@@ -88,6 +88,10 @@
           user.email = "rcmast3r1@gmail.com";
         };
       };
+
+    
+
+
     };
 
     can_config = {
@@ -163,6 +167,7 @@
       modules = [
         ./modules/data_acq.nix
         ./modules/can_network.nix
+        ./modules/websiteDownload.nix
         (
           { pkgs, ... }: {
             config = {
@@ -173,6 +178,7 @@
             };
             options = {
               services.data_writer.options.enable = true;
+              services.http_server.options.enable = true;
             };
             
 
@@ -191,6 +197,7 @@
       modules = [
         "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64-installer.nix"
         ./modules/data_acq.nix
+        ./modules/websiteDownload.nix
         (
           { ... }: {
             config = {
@@ -198,6 +205,7 @@
             };
             options = {
               services.data_writer.options.enable = true;
+              services.http_server.options.enable = true;
             };
 
           }
