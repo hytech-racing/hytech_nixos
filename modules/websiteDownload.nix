@@ -21,7 +21,7 @@ in {
             #   - sudo apt-get install libssl-dev
             #   - cargo install simple-http-server
             
-            confinement.packages = [ pkgs.cargo, pkgs.rustc, pkgs.sslh, pkgs.simple-http-server ];
+            confinement.packages = [ pkgs.rustc, pkgs.sslh, pkgs.simple-http-server ];
             serviceConfig.ExecStop = "/bin/kill -SIGINT $MAINPID";
             serviceConfig.Restart = "on-failure";
         }
