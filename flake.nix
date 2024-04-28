@@ -111,12 +111,7 @@
         networking.wireless = {
           enable = true;
           interfaces = [ "wlan0" ];
-          networks = { "yo" = { psk = "11111111"; }; };
         };
-        networking.extraHosts =
-          ''
-            192.168.203.1 hytech-pi
-          '';
 
         networking.interfaces.end0.ipv4 = {
           addresses = [
@@ -244,7 +239,6 @@
             };
             options = {
               services.data_writer.options.enable = true;
-              # services.data_acq_frontend.enable = true;
               services.user.data_acq_frontend.options.enable = true;
             };
 
