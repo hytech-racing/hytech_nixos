@@ -9,7 +9,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
 
-    hytech_data_acq.url = "github:hytech-racing/data_acq/master";
+    hytech_data_acq.url = "github:hytech-racing/data_acq/frontend-kevin";
     hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/80";
 
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix";
@@ -190,6 +190,7 @@
         ./modules/can_network.nix
         ./modules/linux_router.nix
         ./modules/data_acq_frontend.nix
+        ./modules/simple_http_server.nix
         (
           { pkgs, ... }: {
             config = {
@@ -202,6 +203,8 @@
                 pkgs.getconf
                 pkgs.python311Packages.cantools
                 pkgs.ht_can_pkg
+                pkgs.htop
+                pkgs.simple-http-server
               ];
             };
             options = {
@@ -209,6 +212,8 @@
               services.linux_router.options.enable = true;
               services.linux_router.options.host-ip = "192.168.203.1";
               services.user.data_acq_frontend.enable = true;
+              services.http_server.options.enable = true;
+              services.http_server.options.port = 8000;
 
             };
 
