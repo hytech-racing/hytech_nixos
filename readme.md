@@ -1,8 +1,9 @@
 ### user docs for HyTech's pi
 
 #### ports
-`4000`: frontend
-`8000`: file server;
+`4000`: new frontend
+`8000`: file server
+`6969`: old frontend
 
 
 #### starting and stopping recording
