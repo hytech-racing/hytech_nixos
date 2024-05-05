@@ -7,7 +7,7 @@ in
   options.services.http_server = {
     port = mkOption {
       type = types.int;
-      default = 8000;
+      default = 8001;
     };
   };
   config = {

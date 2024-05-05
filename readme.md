@@ -1,8 +1,8 @@
 ### user docs for HyTech's pi
 
 #### ports
-`4000`: new frontend
-`8000`: file server
+`8000`: param server
+`8001`: file server
 `6969`: old frontend
 
 
