@@ -11,7 +11,7 @@ in
     enable = mkEnableOption "CAN network interfaces";
 
     interfaces = mkOption {
-      default = {};
+      default = { };
       example = literalExpression ''{
         can0 = {
           bitrate = 500000;
@@ -39,10 +39,22 @@ in
       description = "CAN Network Interfaces Setup";
       wantedBy = [ "multi-user.target" ];
       before = [ "network.target" ];
-      script = concatStringsSep "\n" (mapAttrsToList (name: iface: ''
-        ${ipCmd} link set ${name} type can bitrate ${toString iface.bitrate}
-        ${ipCmd} link set up ${name}
-      '') cfg.interfaces);
+      script = concatStringsSep "\n" (mapAttrsToList
+        (name: iface: ''
+          if ! ip link show ${name} | grep -q "UP"; then
+            ${ipCmd} link set ${name} type can bitrate ${toString iface.bitrate}
+            ${ipCmd} link set up ${name}
+          else
+            echo "CAN interface ${name} is already up."
+          fi
+        '')
+        cfg.interfaces);
+
+      reload = concatStringsSep "\n" (mapAttrsToList
+        (name: iface: ''
+          ${ipCmd} link set down ${name}
+        '')
+        cfg.interfaces);
       path = [ pkgs.iproute2 ];
     };
   };
