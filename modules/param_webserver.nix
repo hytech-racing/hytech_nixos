@@ -26,11 +26,11 @@ in {
     };
     param-recv-port = mkOption {
       type = types.int;
-      default = 2002;
+      default = 2001;
     };
     param-send-port = mkOption {
       type = types.int;
-      default = 2001;
+      default = 2000;
     };
   };
   config = {
