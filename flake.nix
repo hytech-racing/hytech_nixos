@@ -1,3 +1,4 @@
+
 {
   description = "Build image";
   nixConfig = {
@@ -6,6 +7,7 @@
       "raspberry-pi-nix.cachix.org-1:WmV2rdSangxW0rZjY/tBvBDSaNFQ3DyEQsVw8EvHn9o="
     ];
   };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
 
@@ -13,18 +15,22 @@
     hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/85";
 
     hytech_params.url = "github:hytech-racing/HT_params/2024-05-05T22_56_37";
+    
+    
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
-  outputs = { self, nixpkgs, hytech_data_acq, raspberry-pi-nix, nixos-generators, hytech_params }: rec {
+  outputs = { self, nixpkgs, hytech_data_acq, raspberry-pi-nix, nixos-generators, hytech_params, home-manager }: rec {
 
 
     shared_config = {
-      nixpkgs.overlays =  hytech_params.overlays.aarch64-linux ++ hytech_data_acq.overlays.aarch64-linux ++
+      nix.settings.experimental-features = [ "nix-command" "flakes" ];
+      nixpkgs.overlays = hytech_params.overlays.aarch64-linux ++ hytech_data_acq.overlays.aarch64-linux ++
         [
           (self: super: {
             linux-router = super.linux-router.override {
@@ -39,7 +45,7 @@
       users.users.nixos.password = "nixos";
       users.groups.nixos = { };
       users.users.nixos.isNormalUser = true;
-
+      system.stateVersion = "23.11";
       system.activationScripts.createRecordingsDir = nixpkgs.lib.stringAfter [ "users" ] ''
         mkdir -p /home/nixos/recordings
         chown nixos:users /home/nixos/recordings
@@ -187,6 +193,8 @@
       system = "aarch64-linux";
       specialArgs = { inherit self; };
       modules = [
+        home-manager.nixosModules.home-manager
+
         ./modules/data_acq.nix
         ./modules/can_network.nix
         ./modules/linux_router.nix
@@ -210,7 +218,9 @@
                 pkgs.params_interface
               ];
             };
+
             options = {
+
               services.data_writer.options.enable = true;
               services.linux_router.options.enable = true;
               services.linux_router.options.host-ip = "192.168.203.1";
@@ -220,8 +230,8 @@
               services.param_webserver.options.enable = true;
               services.param_webserver.options.host-recv-ip = "192.168.1.68";
               services.param_webserver.options.mcu-ip = "192.168.1.30";
-              services.param_webserver.options.param-recv-port = 2001;
-              services.param_webserver.options.param-send-port = 2000;
+              services.param_webserver.options.param-recv-port = 2002;
+              services.param_webserver.options.param-send-port = 2001;
             };
 
           }

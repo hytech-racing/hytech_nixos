@@ -16,21 +16,21 @@ in {
     # what the mcu is sending to
     host-recv-ip = mkOption {
       type = types.str;
-      default = "192.168.1.68";
+      default = "192.168.1.69";
     };
 
     # what the params webserver is sending to
     mcu-ip = mkOption {
       type = types.str;
-      default = "192.168.1.30";
+      default = "192.168.1.12";
     };
     param-recv-port = mkOption {
       type = types.int;
-      default = 2001;
+      default = 2002;
     };
     param-send-port = mkOption {
       type = types.int;
-      default = 2000;
+      default = 2001;
     };
   };
   config = {
