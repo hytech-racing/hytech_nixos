@@ -54,7 +54,6 @@
                 enable = true;
                 params = { };
               };
-              # TODO change this as needed
               mcp2515-can0 = {
                 enable = true;
                 params = {

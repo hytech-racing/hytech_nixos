@@ -14,6 +14,23 @@ in
       type = types.str;
       default = "192.168.1.69";
     };
+    
+    dhcp-start = mkOption {
+      type = types.str;
+      default = "192.168.1.70";
+    };
+    dhcp-end = mkOption {
+      type = types.str;
+      default = "192.168.1.200";
+    };
+    default-gateway = mkOption {
+        type = types.str;
+        default = "192.168.1.1";
+      };
+    dhcp-interfaces = mkOption {
+      type = types.listOf types.str;
+      default = ["enp0s3" "test"];
+    };
   };
   config = {
     systemd.services.sshd.wantedBy = lib.mkOverride 40 [ "multi-user.target" ];
@@ -31,7 +48,14 @@ in
 
     services.dnsmasq = {
       enable = true;
-      settings.address = "/${cfg.url-name}/${cfg.car-ip}";
+      settings = {
+        address = "/${cfg.url-name}/${cfg.car-ip}";
+        domain-needed = true;
+        interface = cfg.dhcp-interfaces;
+        dhcp-authoritative = true;
+        dhcp-range = [ "${cfg.dhcp-start},${cfg.dhcp-end},12h" ];
+        dhcp-option = [ "option:router,${cfg.default-gateway}" "option:netmask,255.255.255.0" ];
+      };
     };
 
     services.nginx = {
@@ -43,6 +67,10 @@ in
       };
       virtualHosts."rec${cfg.url-name}" = {
         locations."/".proxyPass = "http://127.0.0.1:6969";
+      };
+      virtualHosts."foxglove${cfg.url-name}" = {
+        locations."/".proxyPass = "http://${cfg.car-ip}:8765";
+        locations."/".proxyWebsockets = true;
       };
     };
   };
