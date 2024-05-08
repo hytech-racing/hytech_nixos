@@ -9,7 +9,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
 
-    hytech_data_acq.url = "github:hytech-racing/data_acq/master";
+    hytech_data_acq.url = "github:hytech-racing/data_acq/video_writer";
     hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/80";
 
     hytech_params.url = "github:hytech-racing/HT_params/2024-05-02T13_26_46";
