@@ -65,20 +65,14 @@
           home-manager.nixosModules.home-manager
           raspberry-pi-nix.nixosModules.raspberry-pi
           (
-            { ... }: {
-              options = {
-                services.data_writer.options.enable = true;
-                services.linux_router.options.enable = true;
-                services.linux_router.options.host-ip = "192.168.203.1";
+            { config, ... }: {
+                services.linux_router.host-ip = "192.168.203.1";
                 # services.user.data_acq_frontend.enable = true;
-                services.http_server.options.enable = true;
-                services.http_server.options.port = 8001;
-                services.param_webserver.options.enable = true;
-                services.param_webserver.options.host-recv-ip = "192.168.1.68";
-                services.param_webserver.options.mcu-ip = "192.168.1.30";
-                services.param_webserver.options.param-recv-port = 2002;
-                services.param_webserver.options.param-send-port = 2001;
-              };
+                services.http_server.port = 8001;
+                services.param_webserver.host-recv-ip = "192.168.1.68";
+                services.param_webserver.mcu-ip = "192.168.1.30";
+                services.param_webserver.param-recv-port = 2002;
+                services.param_webserver.param-send-port = 2001;
 
             }
           )
@@ -94,19 +88,25 @@
         [
           (nixpkg_overlays)
           (
-            { ... }: {
-              options = {
-                services.data_writer.options.enable = true;
-                services.user.data_acq_frontend.options.enable = true;
-              };
+            { config, ... }: {
+              service_names.url-name = ".car";
+              service_names.car-ip = "192.168.86.35";
+              services.http_server.port = 8001;
+              services.param_webserver.host-recv-ip = "192.168.86.35";
+              services.param_webserver.mcu-ip = "192.168.1.30";
+              services.param_webserver.param-recv-port = 2002;
+              services.param_webserver.param-send-port = 2001;
             }
           )
         ];
     };
+
+
     virtualbox_vm_modules = { modules = support_vm_config.modules ++ [ ./modules/vm_config/virtualbox_config.nix ]; };
-    
+    cc_vm_modules = { modules = support_vm_config.modules ++ [ ./modules/vm_config/basic_vm_hw.nix ]; };
     # Use nixos-generate to create the VMs
     nixosConfigurations.vbi = nixos-generators.nixosGenerate (support_vm_config // virtualbox_vm_modules // { format = "virtualbox"; });
+    nixosConfigurations.basic_vm = nixpkgs.lib.nixosSystem (support_vm_config // cc_vm_modules);
 
     images.tcu = nixosConfigurations.tcu.config.system.build.sdImage;
     tcu_top = nixosConfigurations.tcu.config.system.build.toplevel;
