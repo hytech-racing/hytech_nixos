@@ -17,18 +17,17 @@
 
     services.dnsmasq = {
       enable = true;
-      settings.address = "/hytech.yeet/192.168.86.35";
-      
+      settings.address = "/files.yuh/192.168.86.35";
     };
+
     services.nginx = {
       enable = true;
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
-      virtualHosts."hytech.yeet" = {
-        locations."/files".proxyPass = "http://192.168.86.35:8001";
+      virtualHosts."files.yuh" = {
+        locations."/".proxyPass = "http://127.0.0.1:8001";
       };
     };
-
   };
 }
 
