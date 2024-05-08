@@ -23,11 +23,12 @@ in {
   config = {
     # https://nixos.org/manual/nixos/stable/options.html search for systemd.services.<name>. to get list of all of the options for 
     # new systemd services
+    # https://github.com/garywill/linux-router/tree/master?tab=readme-ov-file#cli-usage-and-other-features
     systemd.services.linux_router = {
       wantedBy = [ "multi-user.target" ];
       serviceConfig.After = [ "network.target" ];
       serviceConfig.ExecStart =
-        "${pkgs.linux-router}/bin/lnxrouter -d -g ${escapeShellArg cfg.host-ip} -n --ap wlan0 ${escapeShellArg cfg.hotspot-name}";
+        "${pkgs.linux-router}/bin/lnxrouter --no-dns -g ${escapeShellArg cfg.host-ip} -n --ap wlan0 ${escapeShellArg cfg.hotspot-name}";
       serviceConfig.ExecStop = "/bin/kill -SIGINT $MAINPID";
       serviceConfig.Restart = "on-failure";
       serviceConfig.PartOf = "wpa_supplicant-wlan0";

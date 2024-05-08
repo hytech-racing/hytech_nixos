@@ -65,15 +65,21 @@
           home-manager.nixosModules.home-manager
           raspberry-pi-nix.nixosModules.raspberry-pi
           (
-            { config, ... }: {
-                services.linux_router.host-ip = "192.168.203.1";
-                # services.user.data_acq_frontend.enable = true;
-                services.http_server.port = 8001;
-                services.param_webserver.host-recv-ip = "192.168.1.68";
-                services.param_webserver.mcu-ip = "192.168.1.30";
-                services.param_webserver.param-recv-port = 2002;
-                services.param_webserver.param-send-port = 2001;
-
+            { config, ... }: rec {
+              services.linux_router.host-ip = "192.168.203.1";
+              # services.user.data_acq_frontend.enable = true;
+              services.http_server.port = 8001;
+              services.param_webserver.host-recv-ip = "192.168.1.68";
+              services.param_webserver.mcu-ip = "192.168.1.30";
+              services.param_webserver.param-recv-port = 2002;
+              services.param_webserver.param-send-port = 2001;
+              service_names.url-name = ".car";
+              service_names.car-ip = "192.168.1.69";
+              service_names.car-wifi-ip = services.linux_router.host-ip;
+              service_names.dhcp-start = "192.168.1.70";
+              service_names.dhcp-end = "192.168.1.200";
+              service_names.default-gateway = "192.168.1.1";
+              service_names.dhcp-interfaces = [ "end0" "wlan0" ];
             }
           )
         ];
@@ -94,7 +100,7 @@
               service_names.dhcp-start = "192.168.86.37";
               service_names.dhcp-end = "192.168.86.200";
               service_names.default-gateway = "192.168.1.1";
-              service_names.dhcp-interfaces = ["enp0s3"];
+              service_names.dhcp-interfaces = [ "enp0s3" ];
               services.http_server.port = 8001;
               services.param_webserver.host-recv-ip = "192.168.86.36";
               services.param_webserver.mcu-ip = "192.168.1.30";

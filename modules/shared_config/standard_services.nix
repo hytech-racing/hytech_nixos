@@ -14,7 +14,10 @@ in
       type = types.str;
       default = "192.168.1.69";
     };
-    
+    car-wifi-ip = mkOption {
+      type = types.str;
+      default = "192.168.203.1";
+    };
     dhcp-start = mkOption {
       type = types.str;
       default = "192.168.1.70";
@@ -49,7 +52,7 @@ in
     services.dnsmasq = {
       enable = true;
       settings = {
-        address = "/${cfg.url-name}/${cfg.car-ip}";
+        address = "/${cfg.url-name}/${cfg.car-ip}/${cfg.car-wifi-ip}";
         domain-needed = true;
         interface = cfg.dhcp-interfaces;
         dhcp-authoritative = true;
@@ -67,6 +70,9 @@ in
       };
       virtualHosts."rec${cfg.url-name}" = {
         locations."/".proxyPass = "http://127.0.0.1:6969";
+      };
+      virtualHosts."params${cfg.url-name}" = {
+        locations."/".proxyPass = "http://127.0.0.1:8000";
       };
       virtualHosts."foxglove${cfg.url-name}" = {
         locations."/".proxyPass = "http://${cfg.car-ip}:8765";
