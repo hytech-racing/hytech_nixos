@@ -49,36 +49,36 @@ in
       }
     ];
 
-    services.dnsmasq = {
-      enable = true;
-      settings = {
-        address = "/${cfg.url-name}/${cfg.car-ip}/${cfg.car-wifi-ip}";
-        domain-needed = true;
-        interface = cfg.dhcp-interfaces;
-        dhcp-authoritative = true;
-        dhcp-range = [ "${cfg.dhcp-start},${cfg.dhcp-end},12h" ];
-        dhcp-option = [ "option:router,${cfg.default-gateway}" "option:netmask,255.255.255.0" ];
-      };
-    };
+    # services.dnsmasq = {
+    #   enable = true;
+    #   settings = {
+    #     address = "/${cfg.url-name}/${cfg.car-ip}/";
+    #     domain-needed = true;
+    #     interface = cfg.dhcp-interfaces;
+    #     dhcp-authoritative = true;
+    #     dhcp-range = [ "eth,${cfg.dhcp-start},${cfg.dhcp-end},12h"];
+    #     dhcp-option = [ "option:router,${cfg.default-gateway}" "option:netmask,255.255.255.0" ];
+    #   };
+    # };
 
-    services.nginx = {
-      enable = true;
-      recommendedProxySettings = true;
-      recommendedTlsSettings = true;
-      virtualHosts."files${cfg.url-name}" = {
-        locations."/".proxyPass = "http://127.0.0.1:8001";
-      };
-      virtualHosts."rec${cfg.url-name}" = {
-        locations."/".proxyPass = "http://127.0.0.1:6969";
-      };
-      virtualHosts."params${cfg.url-name}" = {
-        locations."/".proxyPass = "http://127.0.0.1:8000";
-      };
-      virtualHosts."foxglove${cfg.url-name}" = {
-        locations."/".proxyPass = "http://${cfg.car-ip}:8765";
-        locations."/".proxyWebsockets = true;
-      };
-    };
+    # services.nginx = {
+    #   enable = true;
+    #   recommendedProxySettings = true;
+    #   recommendedTlsSettings = true;
+    #   virtualHosts."files${cfg.url-name}" = {
+    #     locations."/".proxyPass = "http://127.0.0.1:8001";
+    #   };
+    #   virtualHosts."rec${cfg.url-name}" = {
+    #     locations."/".proxyPass = "http://127.0.0.1:6969";
+    #   };
+    #   virtualHosts."params${cfg.url-name}" = {
+    #     locations."/".proxyPass = "http://127.0.0.1:8000";
+    #   };
+    #   # virtualHosts."foxglove${cfg.url-name}" = {
+    #   #   locations."/".proxyPass = "http://127.0.0.1:8765";
+    #   #   locations."/".proxyWebsockets = true;
+    #   # };
+    # };
   };
 }
 

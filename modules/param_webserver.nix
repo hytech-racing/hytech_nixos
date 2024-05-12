@@ -20,17 +20,21 @@ in {
     };
 
     # what the params webserver is sending to
+    web-port = mkOption {
+      type = types.int;
+      default = 8002;
+    };
     mcu-ip = mkOption {
       type = types.str;
-      default = "192.168.1.12";
+      default = "192.168.1.30";
     };
     param-recv-port = mkOption {
       type = types.int;
-      default = 2002;
+      default = 20001;
     };
     param-send-port = mkOption {
       type = types.int;
-      default = 2001;
+      default = 2000;
     };
   };
   config = {
@@ -40,7 +44,7 @@ in {
       wantedBy = [ "multi-user.target" ];
       serviceConfig.After = [ "network.target" ];
       serviceConfig.ExecStart =
-        "${pkgs.params_interface}/bin/params_interface.py --host_ip ${escapeShellArg cfg.host-recv-ip} --ip ${escapeShellArg cfg.mcu-ip} --send_port ${escapeShellArg cfg.param-send-port} --recv_port ${escapeShellArg cfg.param-recv-port}";
+        "${pkgs.params_interface}/bin/params_interface.py --port ${escapeShellArg cfg.web-port} --host_ip ${escapeShellArg cfg.host-recv-ip} --ip ${escapeShellArg cfg.mcu-ip} --send_port ${escapeShellArg cfg.param-send-port} --recv_port ${escapeShellArg cfg.param-recv-port}";
       serviceConfig.ExecStop = "/bin/kill -SIGINT $MAINPID";
       serviceConfig.Restart = "on-failure";
     };

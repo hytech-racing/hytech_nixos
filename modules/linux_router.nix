@@ -28,7 +28,7 @@ in {
       wantedBy = [ "multi-user.target" ];
       serviceConfig.After = [ "network.target" ];
       serviceConfig.ExecStart =
-        "${pkgs.linux-router}/bin/lnxrouter --no-dns -g ${escapeShellArg cfg.host-ip} -n --ap wlan0 ${escapeShellArg cfg.hotspot-name}";
+        "${pkgs.linux-router}/bin/lnxrouter -d -g ${escapeShellArg cfg.host-ip} -n --ap wlan0 ${escapeShellArg cfg.hotspot-name}";
       serviceConfig.ExecStop = "/bin/kill -SIGINT $MAINPID";
       serviceConfig.Restart = "on-failure";
       serviceConfig.PartOf = "wpa_supplicant-wlan0";
