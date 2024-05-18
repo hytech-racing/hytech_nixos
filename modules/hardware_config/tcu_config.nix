@@ -1,7 +1,6 @@
 { lib, pkgs, config, ... }:
 {
   config = {
-    nixpkgs.hostPlatform.system = "aarch64-linux";
     networking.wireless = {
       enable = true;
       interfaces = [ "wlan0" ];
