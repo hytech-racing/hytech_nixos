@@ -12,7 +12,6 @@
       pkgs.ht_can_pkg
       pkgs.htop
       pkgs.simple-http-server
-      pkgs.params_interface
     ];
   };
 }

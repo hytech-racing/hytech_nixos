@@ -7,12 +7,12 @@
     ];
   };
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
-    hytech_data_acq.url = "github:hytech-racing/data_acq/2024-04-27T00_26_50";
+  inputs = rec {
+    hytech_data_acq.url = "github:hytech-racing/data_acq/feature/param_server_integration";
     hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/92";
-    hytech_params.url = "github:hytech-racing/HT_params/2024-05-15T23_41_42";
+    hytech_data_acq.inputs.ht_params.url = "github:hytech-racing/HT_params/just_descriptions";
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix";
+    nixpkgs.follows = "raspberry-pi-nix/nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -20,10 +20,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, hytech_data_acq, raspberry-pi-nix, nixos-generators, hytech_params, home-manager }: rec {
+  outputs = { self, nixpkgs, hytech_data_acq, raspberry-pi-nix, nixos-generators, home-manager }: rec {
     nixpkg_overlays =
       {
-        nixpkgs.overlays = hytech_params.overlays.aarch64-linux ++ hytech_data_acq.overlays.aarch64-linux ++
+        nixpkgs.overlays = hytech_data_acq.overlays.aarch64-linux ++
           [
             (self: super: {
               linux-router = super.linux-router.override {
@@ -48,14 +48,14 @@
     hytech_service_modules = [
       ./modules/data_acq.nix
       ./modules/can_network.nix
-      # ./modules/data_acq_frontend.nix
       ./modules/simple_http_server.nix
-      ./modules/param_webserver.nix
+      # ./modules/param_webserver.nix
     ];
 
     # shoutout to https://github.com/tstat/raspberry-pi-nix absolute goat
     nixosConfigurations.tcu = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
+
       specialArgs = { inherit self; };
       modules =
         tcu_config_modules ++
@@ -65,14 +65,18 @@
           home-manager.nixosModules.home-manager
           raspberry-pi-nix.nixosModules.raspberry-pi
           (
-            { config, ... }: rec {
+            { config, options, ... }: rec {
+              # nixpkgs.crossSystem = {
+              #   system = "aarch64-linux";
+              # };
+              nixpkgs.hostPlatform.system = "aarch64-linux";
+              nixpkgs.buildPlatform.system = "x86_64-linux";
+              services.data_writer.mcu-ip = "192.168.1.30";
+              services.data_writer.recv-ip = "192.168.1.69";
+              services.data_writer.send-to-mcu-port = 20000;
+              services.data_writer.recv-from-mcu-port = 20001;
               services.linux_router.host-ip = "192.168.203.1";
-              # services.user.data_acq_frontend.enable = true;
               services.http_server.port = 8001;
-              services.param_webserver.mcu-ip = "192.168.1.30";
-              services.param_webserver.web-port = 8000;
-              services.param_webserver.param-recv-port = 20001;
-              services.param_webserver.param-send-port = 20000;
               # service_names.url-name = ".car";
               # service_names.car-ip = "192.168.1.69";
               # service_names.car-wifi-ip = services.linux_router.host-ip;
@@ -95,6 +99,10 @@
           (nixpkg_overlays)
           (
             { config, ... }: {
+              services.data_writer.mcu-ip = "127.0.0.1";
+              services.data_writer.recv-ip = "127.0.0.1";
+              services.data_writer.send-to-mcu-port = 20001;
+              services.data_writer.recv-from-mcu-port = 20002;
               service_names.url-name = ".car";
               service_names.car-ip = "192.168.86.36";
               service_names.dhcp-start = "192.168.86.37";
@@ -102,10 +110,10 @@
               service_names.default-gateway = "192.168.1.1";
               service_names.dhcp-interfaces = [ "enp0s3" ];
               services.http_server.port = 8001;
-              services.param_webserver.host-recv-ip = "192.168.86.36";
-              services.param_webserver.mcu-ip = "192.168.1.30";
-              services.param_webserver.param-recv-port = 2002;
-              services.param_webserver.param-send-port = 2001;
+              # services.param_webserver.host-recv-ip = "192.168.86.36";
+              # services.param_webserver.mcu-ip = "192.168.1.30";
+              # services.param_webserver.param-recv-port = 2002;
+              # services.param_webserver.param-send-port = 2001;
             }
           )
         ];
