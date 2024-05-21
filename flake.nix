@@ -9,10 +9,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
 
-    hytech_data_acq.url = "github:hytech-racing/data_acq/2024-04-27T00_26_50";
+    hytech_data_acq.url = "github:hytech-racing/data_acq/video_integration";
     hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/85";
 
-    raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix";
+    raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix/b39b556e8a1c4bd6f8a59e8719dc1f658f18f255";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
