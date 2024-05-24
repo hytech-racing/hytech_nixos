@@ -8,9 +8,8 @@
   };
 
   inputs = rec {
-    hytech_data_acq.url = "github:hytech-racing/data_acq/feature/param_server_integration";
-    hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/92";
-    hytech_data_acq.inputs.ht_params.url = "github:hytech-racing/HT_params/2024-05-19T03_07_29";
+    hytech_data_acq.url = "github:hytech-racing/data_acq/2024-04-27T00_26_50";
+    hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/98";
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix/b39b556e8a1c4bd6f8a59e8719dc1f658f18f255";
     nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
 
@@ -68,10 +67,10 @@
           (
             { config, options, ... }: rec {
               nixpkgs.hostPlatform.system = "aarch64-linux";
-              services.data_writer.mcu-ip = "192.168.1.30";
-              services.data_writer.recv-ip = "192.168.1.69";
-              services.data_writer.send-to-mcu-port = 20000;
-              services.data_writer.recv-from-mcu-port = 20001;
+              # services.data_writer.mcu-ip = "192.168.1.30";
+              # services.data_writer.recv-ip = "192.168.1.69";
+              # services.data_writer.send-to-mcu-port = 20000;
+              # services.data_writer.recv-from-mcu-port = 20001;
               services.linux_router.host-ip = "192.168.203.1";
               services.http_server.port = 8001;
               # service_names.url-name = ".car";
