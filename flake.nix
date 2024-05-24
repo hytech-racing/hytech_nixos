@@ -66,6 +66,7 @@
           raspberry-pi-nix.nixosModules.raspberry-pi
           (
             { config, options, ... }: rec {
+              sdImage.compressImage = false;
               nixpkgs.hostPlatform.system = "aarch64-linux";
               # services.data_writer.mcu-ip = "192.168.1.30";
               # services.data_writer.recv-ip = "192.168.1.69";
