@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "CASE_lib": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716735369,
+        "narHash": "sha256-T3Jtp0XKL6Q+VZTf1k3uvbDb3Og9lWnsHvc62Xqq7gE=",
+        "ref": "v60",
+        "rev": "735b6ae28ad3610cf35e43769ef09c449c896992",
+        "revCount": 28,
+        "type": "git",
+        "url": "ssh://git@github.com/hytech-racing/CASE_lib"
+      },
+      "original": {
+        "ref": "v60",
+        "rev": "735b6ae28ad3610cf35e43769ef09c449c896992",
+        "type": "git",
+        "url": "ssh://git@github.com/hytech-racing/CASE_lib"
+      }
+    },
     "asyncudp": {
       "inputs": {
         "nixpkgs": "nixpkgs_2",
@@ -39,7 +57,7 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": "systems_5"
+        "systems": "systems_8"
       },
       "locked": {
         "lastModified": 1710146030,
@@ -99,38 +117,17 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1715647741,
-        "narHash": "sha256-d5uxTlA1Ckwc7IeEOlsPj3vT1ls6Y5c1NIwcsd8XkDM=",
+        "lastModified": 1716699301,
+        "narHash": "sha256-qPeEn6FJ43tmr36A6LgLCwArGpXwpMt3zct5YpGs4OM=",
         "owner": "hytech-racing",
         "repo": "ht_can",
-        "rev": "33268ce62a7c81921aff009c8b70ab701099b443",
+        "rev": "67dffc11b6e56c41e733878b50f110bf65601a17",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "92",
+        "ref": "101",
         "repo": "ht_can",
-        "type": "github"
-      }
-    },
-    "ht_params": {
-      "inputs": {
-        "flake-utils": "flake-utils_2",
-        "nix-proto": "nix-proto",
-        "nixpkgs": "nixpkgs_6"
-      },
-      "locked": {
-        "lastModified": 1716088006,
-        "narHash": "sha256-2oycNIlMDvEuQJXfjZkzH6nHM0qJR8FwEbtQZt4QLuA=",
-        "owner": "hytech-racing",
-        "repo": "HT_params",
-        "rev": "616e4355f8eacf0d91294135ce5a4507433a51b8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hytech-racing",
-        "ref": "2024-05-19T03_07_29",
-        "repo": "HT_params",
         "type": "github"
       }
     },
@@ -140,25 +137,46 @@
         "flake-utils": "flake-utils",
         "foxglove-websocket": "foxglove-websocket",
         "ht_can_pkg_flake": "ht_can_pkg_flake",
-        "ht_params": "ht_params",
         "mcap": "mcap",
         "mcap-protobuf": "mcap-protobuf",
-        "nix-proto": "nix-proto_2",
-        "nixpkgs": "nixpkgs_10",
+        "nix-proto": "nix-proto",
+        "nixpkgs": "nixpkgs_8",
         "utils": "utils_6"
       },
       "locked": {
-        "lastModified": 1716095344,
-        "narHash": "sha256-KqQkc5vwIGOJatTHMtshmH/aL1PDJmlsD77Kk8ExPQo=",
+        "lastModified": 1712084794,
+        "narHash": "sha256-hxyxCePY+SJvahoyqSploVJAJzA0iYJ0grp8affBAj0=",
         "owner": "hytech-racing",
         "repo": "data_acq",
-        "rev": "a38291cdbd8410b435d9e70cdae2f178cd3e5cf1",
+        "rev": "b2c2c05b245963ea359890ea18819f646e894f67",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "feature/param_server_integration",
+        "ref": "2024-04-27T00_26_50",
         "repo": "data_acq",
+        "type": "github"
+      }
+    },
+    "hytech_params_server": {
+      "inputs": {
+        "CASE_lib": "CASE_lib",
+        "flake-utils": "flake-utils_2",
+        "nix-proto": "nix-proto_2",
+        "nixpkgs": "nixpkgs_10"
+      },
+      "locked": {
+        "lastModified": 1716737567,
+        "narHash": "sha256-XKZSF8ViKWBbp0TBfzNpNxJk+sIkVnmDxeEr7eOaXfo=",
+        "owner": "hytech-racing",
+        "repo": "HT_params",
+        "rev": "7ce3b9b5bbf7eec90f8e21373f2d3648373b675b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hytech-racing",
+        "ref": "2024-05-26T15_33_34",
+        "repo": "HT_params",
         "type": "github"
       }
     },
@@ -215,7 +233,7 @@
     },
     "mcap": {
       "inputs": {
-        "nixpkgs": "nixpkgs_7",
+        "nixpkgs": "nixpkgs_5",
         "utils": "utils_4"
       },
       "locked": {
@@ -234,7 +252,7 @@
     },
     "mcap-protobuf": {
       "inputs": {
-        "nixpkgs": "nixpkgs_8",
+        "nixpkgs": "nixpkgs_6",
         "utils": "utils_5"
       },
       "locked": {
@@ -285,7 +303,7 @@
       "inputs": {
         "nix-filter": "nix-filter",
         "nix-std": "nix-std",
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_7"
       },
       "locked": {
         "lastModified": 1709706423,
@@ -405,11 +423,11 @@
     },
     "nixpkgs_10": {
       "locked": {
-        "lastModified": 1715668745,
-        "narHash": "sha256-xp62OkRkbUDNUc6VSqH02jB0FbOS+MsfMb7wL1RJOfA=",
+        "lastModified": 1714409183,
+        "narHash": "sha256-Wacm/DrzLD7mjFGnSxxyGkJgg2unU/dNdNgdngBH+RU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9ddcaffecdf098822d944d4147dd8da30b4e6843",
+        "rev": "576ecd43d3b864966b4423a853412d6177775e8b",
         "type": "github"
       },
       "original": {
@@ -485,38 +503,6 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1703336516,
-        "narHash": "sha256-tubahnvhR0RmdCFtMtNEYKc88zKefapmm5+wykVMvCM=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "78bcced5a04aa6911a0d93cb25ff6599ca2f97c6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "release-23.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_6": {
-      "locked": {
-        "lastModified": 1714409183,
-        "narHash": "sha256-Wacm/DrzLD7mjFGnSxxyGkJgg2unU/dNdNgdngBH+RU=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "576ecd43d3b864966b4423a853412d6177775e8b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-23.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_7": {
-      "locked": {
         "lastModified": 1702921762,
         "narHash": "sha256-O/rP7gulApQAB47u6szEd8Pn8Biw0d84j5iuP2tcxzY=",
         "owner": "NixOS",
@@ -531,13 +517,45 @@
         "type": "github"
       }
     },
-    "nixpkgs_8": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1702780907,
         "narHash": "sha256-blbrBBXjjZt6OKTcYX1jpe9SRof2P9ZYWPzq22tzXAA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "1e2e384c5b7c50dbf8e9c441a9e58d85f408b01f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_7": {
+      "locked": {
+        "lastModified": 1703336516,
+        "narHash": "sha256-tubahnvhR0RmdCFtMtNEYKc88zKefapmm5+wykVMvCM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "78bcced5a04aa6911a0d93cb25ff6599ca2f97c6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-23.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_8": {
+      "locked": {
+        "lastModified": 1715668745,
+        "narHash": "sha256-xp62OkRkbUDNUc6VSqH02jB0FbOS+MsfMb7wL1RJOfA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9ddcaffecdf098822d944d4147dd8da30b4e6843",
         "type": "github"
       },
       "original": {
@@ -593,6 +611,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "hytech_data_acq": "hytech_data_acq",
+        "hytech_params_server": "hytech_params_server",
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs_11",
         "raspberry-pi-nix": "raspberry-pi-nix"
@@ -855,7 +874,7 @@
     },
     "utils_4": {
       "inputs": {
-        "systems": "systems_6"
+        "systems": "systems_5"
       },
       "locked": {
         "lastModified": 1701680307,
@@ -873,7 +892,7 @@
     },
     "utils_5": {
       "inputs": {
-        "systems": "systems_7"
+        "systems": "systems_6"
       },
       "locked": {
         "lastModified": 1701680307,
@@ -891,7 +910,7 @@
     },
     "utils_6": {
       "inputs": {
-        "systems": "systems_8"
+        "systems": "systems_7"
       },
       "locked": {
         "lastModified": 1710146030,
