@@ -49,7 +49,7 @@
       ./modules/data_acq.nix
       ./modules/can_network.nix
       ./modules/simple_http_server.nix
-      # ./modules/modem.nix
+      ./modules/modem.nix
       # ./modules/param_webserver.nix
     ];
 
