@@ -12,7 +12,7 @@ in
       description = "Modem Network Interfaces Setup";
       wantedBy = [ "multi-user.target" ];
       before = [ "network.target" ];
-      script = iface: ''
+      script = ''
           if ! ip link show wwu1i4 | grep -q "UP"; then
             sudo ip link set wwu1i4 down
             echo 'Y' | sudo tee /sys/class/net/wwu1i4/qmi/raw_ip
@@ -23,7 +23,7 @@ in
             echo "wwu1i4 is already up."
           fi
         '';
-      reload = iface: ''
+      reload = ''
           sudo ip link set wwu1i4 down
         '';
       path = [ pkgs.iproute2 ];
