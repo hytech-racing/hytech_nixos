@@ -11,8 +11,8 @@ in
       description = "Modem Network Interfaces Setup";
       wantedBy = [ "multi-user.target" ];
       serviceConfig.After = [ "network.target" ];
-      ExecStartPre=timeout 60s bash -c 'until ip a s wwu1i4; do sleep 1; done'
-      ExecStart = ''
+      serviceConfig.ExecStartPre=timeout 60s bash -c 'until ip a s wwu1i4; do sleep 1; done'
+      serviceConfig.ExecStart = ''
             sudo ip link set wwu1i4 down
             echo 'Y' | sudo tee /sys/class/net/wwu1i4/qmi/raw_ip
             sudo ip link set wwu1i4 up
