@@ -6,6 +6,7 @@ let
 in {
     config = {
         systemd.services.modem = {
+          wantedBy = [ "multi-user.target" ];
           script =
           ''
             sudo ip link set wwu1i4 down
