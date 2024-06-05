@@ -6,8 +6,9 @@ let
 in {
     config = {
         systemd.services.modem = {
-          wantedBy = [ "multi-user.target" ];
-          script =
+          wantedBy = [ "default.target" ];
+          serviceConfig.After = [ "network.target" ];
+          serviceConfig.ExecStart =
           ''
             set -e
             sudo ip link set wwu1i4 down
