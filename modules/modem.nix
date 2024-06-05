@@ -4,7 +4,6 @@ with lib;
 
 let
   cfg = config.services.modem;
-  ipCmd = "${pkgs.iproute2}/bin/ip";
 in
 {
   config = {
@@ -22,7 +21,6 @@ in
       reload = ''
           sudo ip link set wwu1i4 down
         '';
-      path = [ pkgs.iproute2 ];
     };
   };
 }
