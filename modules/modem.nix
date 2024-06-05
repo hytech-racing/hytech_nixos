@@ -10,7 +10,7 @@ in
     systemd.services.modem = {
       description = "Modem Network Interfaces Setup";
       wantedBy = [ "multi-user.target" ];
-      before = [ "network.target" ];
+      serviceConfig.After = [ "network.target" ];
       script = ''
             sudo ip link set wwu1i4 down
             echo 'Y' | sudo tee /sys/class/net/wwu1i4/qmi/raw_ip
