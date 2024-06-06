@@ -2,11 +2,6 @@
 { config, lib, ... }:
 {
   config = {
-    environment.systemPackages = with pkgs; [
-      sudo
-      qmicli
-      udhcpc
-    ];
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     nix.settings.require-sigs = false;
     users.users.nixos.group = "nixos";
