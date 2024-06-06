@@ -1,5 +1,5 @@
 # contains the shared configuration for nix, the nixos user on tcu, standard programs
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
   config = {
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
