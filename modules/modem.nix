@@ -9,7 +9,7 @@ in
 
     systemd.services.modem = {
       wantedBy = [ "multi-user.target" ];
-      serviceConfig.After = [ "network.target", "ttyUSB2.device", "cdc-wdm0" ];
+      serviceConfig.After = [ "network.target" "ttyUSB2.device" "cdc-wdm0" ];
       script = ''
           sudo ip link set wwu1i4 down
           echo 'Y' | sudo tee /sys/class/net/wwu1i4/qmi/raw_ip
