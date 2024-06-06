@@ -15,6 +15,7 @@
       pkgs.libqmi
       pkgs.busybox
       pkgs.minicom
+      pkgs.sudo
     ];
   };
 }
