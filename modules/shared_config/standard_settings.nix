@@ -16,20 +16,22 @@
       mkdir -p /home/nixos/recordings
       chown nixos:users /home/nixos/recordings
     '';
-    system.activationScripts.setupWwu1i4 = lib.mkAfter '' 
-          cat << EOF | sudo tee /etc/network/interfaces.d/wwu1i4 > /dev/null
-          auto wwu1i4
-          iface wwu1i4 inet manual
-               pre-up ifconfig wwu1i4 down
-               pre-up echo Y > /sys/class/net/wwu1i4/qmi/raw_ip
-               pre-up for _ in \$(seq 1 10); do /usr/bin/test -c /dev/cdc-wdm0 && break; /bin/sleep 1; done
-               pre-up for _ in \$(seq 1 10); do /usr/bin/qmicli -d /dev/cdc-wdm0 --nas-get-signal-strength && break; /bin/sleep 1; done
-               pre-up sudo qmicli -p -d /dev/cdc-wdm0 --device-open-net='net-raw-ip|net-no-qos-header' --wds-start-network="apn='fast.t-mobile.com',ip-type=4" --client-no-release-cid
-               pre-up udhcpc -i wwu1i4
-               post-down /usr/bin/qmi-network /dev/cdc-wdm0 stop
-          EOF
-          sudo chmod 644 /etc/network/interfaces.d/wwu1i4
-        '';
+     system.activationScripts.setupWwu1i4 = lib.mkAfter '' 
+            mkdir -p /etc/network/interfaces.d
+            cat << EOF > /etc/network/interfaces.d/wwu1i4
+      auto wwu1i4
+      iface wwu1i4 inet manual
+           pre-up ip link set wwu1i4 down
+           pre-up echo Y > /sys/class/net/wwu1i4/qmi/raw_ip
+           pre-up for _ in \$(seq 1 10); do /usr/bin/test -c /dev/cdc-wdm0 && break; /bin/sleep 1; done
+           pre-up for _ in \$(seq 1 10); do /usr/bin/qmicli -d /dev/cdc-wdm0 --nas-get-signal-strength && break; /bin/sleep 1; done
+           pre-up qmicli -p -d /dev/cdc-wdm0 --device-open-net='net-raw-ip|net-no-qos-header' --wds-start-network="apn='fast.t-mobile.com',ip-type=4" --client-no-release-cid
+           pre-up udhcpc -i wwu1i4
+           post-down /usr/bin/qmi-network /dev/cdc-wdm0 stop
+      EOF
+            chmod 644 /etc/network/interfaces.d/wwu1i4
+          '';
+
     users.extraUsers.nixos.openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJSt9Z8Qdq068xj/ILVAMqmkVyUvKCSTsdaoehEZWRut rcmast3r1@gmail.com"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPhMu3LzyGPjh0WkqV7kZYwA+Hyd2Bfc+1XQJ88HeU4A rcmast3r1@gmail.com"
