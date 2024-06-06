@@ -2,6 +2,11 @@
 { config, lib, ... }:
 {
   config = {
+    environment.systemPackages = with pkgs; [
+      sudo
+      qmicli
+      udhcpc
+    ];
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     nix.settings.require-sigs = false;
     users.users.nixos.group = "nixos";
@@ -18,6 +23,7 @@
     '';
     system.activationScripts.setupWwu1i4 = lib.mkAfter '' 
           cat << EOF | sudo tee /etc/network/interfaces.d/wwu1i4 > /dev/null
+          auto wwu1i4
           iface wwu1i4 inet manual
                pre-up ifconfig wwu1i4 down
                pre-up echo Y > /sys/class/net/wwu1i4/qmi/raw_ip
