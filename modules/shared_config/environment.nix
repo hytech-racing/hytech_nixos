@@ -16,6 +16,7 @@
       pkgs.busybox
       pkgs.minicom
       pkgs.sudo
+      pkgs.tailscale
     ];
   };
 }
