@@ -28,16 +28,17 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1717636691,
-        "narHash": "sha256-T8E6YqodHvyxX7FQmG9P1EHj3FMcRNdRfnmP/Kvp3Yk=",
+        "lastModified": 1717803502,
+        "narHash": "sha256-FQKx5GPnW6eOcQQSZ3NgZA2PKu4/O/K5mfkjGSgUCBA=",
         "owner": "hytech-racing",
         "repo": "aero_sensor_logger",
-        "rev": "54cdd3e875c049f0aab3e4a755815a631d3422f4",
+        "rev": "8ff36ab9256d6f22ad04aff68c3fabc5f2de796d",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
         "repo": "aero_sensor_logger",
+        "rev": "8ff36ab9256d6f22ad04aff68c3fabc5f2de796d",
         "type": "github"
       }
     },
