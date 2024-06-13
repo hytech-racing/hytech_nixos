@@ -15,7 +15,7 @@
       allowedUDPPorts = [ config.services.tailscale.port 8765 6969 8001 443];
 
       # allow you to SSH in over the public internet
-      allowedTCPPorts = [ 22 8765 6969 8001 ];
+      allowedTCPPorts = [ 22 8765 6969 8001 443];
     };
   };
 
