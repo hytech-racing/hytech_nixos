@@ -1,0 +1,61 @@
+{ config, lib, pkgs, ... }:
+
+with lib;
+
+let
+  cfg = config.networking.lte_network;
+  
+in
+{
+  options.networking.lte_network = {
+    enable = mkEnableOption "lte_network network interfaces";
+
+    interfaces = mkOption {
+      default = { };
+      example = literalExpression ''{
+        can0 = {
+          bitrate = 500000;
+        };
+      }'';
+      type = types.attrsOf (types.submodule {
+        options = {
+          name = mkOption {
+            type = types.str;
+            description = "The name of the CAN interface.";
+          };
+          bitrate = mkOption {
+            type = types.int;
+            default = 500000;
+            description = "The bitrate of the CAN interface.";
+          };
+        };
+      });
+      description = "CAN interface configurations.";
+    };
+  };
+
+  config = mkIf cfg.enable {
+    systemd.services.can-setup = {
+      description = "CAN Network Interfaces Setup";
+      wantedBy = [ "multi-user.target" ];
+      before = [ "network.target" ];
+      script = concatStringsSep "\n" (mapAttrsToList
+        (name: iface: ''
+          if ! ip link show ${name} | grep -q "UP"; then
+            ${ipCmd} link set ${name} type can bitrate ${toString iface.bitrate}
+            ${ipCmd} link set up ${name}
+          else
+            echo "CAN interface ${name} is already up."
+          fi
+        '')
+        cfg.interfaces);
+
+      reload = concatStringsSep "\n" (mapAttrsToList
+        (name: iface: ''
+          ${ipCmd} link set down ${name}
+        '')
+        cfg.interfaces);
+      path = [ pkgs.iproute2 ];
+    };
+  };
+}
