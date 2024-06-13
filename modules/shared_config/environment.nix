@@ -12,6 +12,10 @@
       pkgs.ht_can_pkg
       pkgs.htop
       pkgs.simple-http-server
+      pkgs.libqmi
+      pkgs.busybox
+      pkgs.minicom
+      pkgs.sudo
       pkgs.tailscale
     ];
   };
