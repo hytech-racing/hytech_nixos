@@ -64,7 +64,7 @@
         hytech_service_modules ++
         shared_config_modules ++ [
           (nixpkg_overlays)
-          aero_sensor_logger.nixosModules.aarch64-linux.aero-sensor-logger
+          # aero_sensor_logger.nixosModules.aarch64-linux.aero-sensor-logger
           home-manager.nixosModules.home-manager
           raspberry-pi-nix.nixosModules.raspberry-pi
           (
@@ -77,7 +77,7 @@
               services.linux_router.host-ip = "192.168.203.1";
               services.http_server.port = 8001;
               services.param_webserver.enable = true;
-              aero-sensor-logger.enable = true;
+              # aero-sensor-logger.enable = true;
               # service_names.url-name = ".car";
               # service_names.car-ip = "192.168.1.69";
               # service_names.car-wifi-ip = services.linux_router.host-ip;
