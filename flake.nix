@@ -52,6 +52,7 @@
       ./modules/can_network.nix
       ./modules/simple_http_server.nix
       ./modules/param_webserver.nix
+      ./modules/modem.nix
     ];
 
     # shoutout to https://github.com/tstat/raspberry-pi-nix absolute goat
