@@ -107,6 +107,7 @@
               service_names.default-gateway = "192.168.1.1";
               service_names.dhcp-interfaces = [ "enp0s3" ];
               services.http_server.port = 8001;
+              raspberry-pi-nix.libcamera-overlay.enable = false;
               # services.param_webserver.host-recv-ip = "192.168.86.36";
               # services.param_webserver.mcu-ip = "192.168.1.30";
               # services.param_webserver.param-recv-port = 2002;
