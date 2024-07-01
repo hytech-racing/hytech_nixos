@@ -74,6 +74,7 @@
               services.data_writer.recv-from-mcu-port = 20001;
               services.linux_router.host-ip = "192.168.203.1";
               services.http_server.port = 8001;
+              raspberry-pi-nix.libcamera-overlay.enable = false;
               # service_names.url-name = ".car";
               # service_names.car-ip = "192.168.1.69";
               # service_names.car-wifi-ip = services.linux_router.host-ip;
