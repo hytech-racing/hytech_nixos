@@ -8,7 +8,8 @@
   };
 
   inputs = rec {
-    hytech_data_acq.url = "github:hytech-racing/data_acq/2024-04-27T00_26_50";
+    # hytech_data_acq.url = "github:hytech-racing/data_acq/2024-04-27T00_26_50";
+    hytech_data_acq.url = "github:hytech-racing/data_acq/aero_integrated";
     hytech_data_acq.inputs.ht_can_pkg_flake.url = "github:hytech-racing/ht_can/102";
     aero_sensor_logger.url = "github:hytech-racing/aero_sensor_logger/8ff36ab9256d6f22ad04aff68c3fabc5f2de796d";
     hytech_params_server.url = "github:hytech-racing/HT_params/2024-05-26T15_33_34";
