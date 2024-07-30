@@ -77,6 +77,7 @@
               services.linux_router.host-ip = "192.168.203.1";
               services.http_server.port = 8001;
               services.param_webserver.enable = true;
+              raspberry-pi-nix.libcamera-overlay.enable = false;
               # aero-sensor-logger.enable = true;
               # service_names.url-name = ".car";
               # service_names.car-ip = "192.168.1.69";
