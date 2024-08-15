@@ -18,6 +18,11 @@
       allowedTCPPorts = [ 22 8765 6969 8001 443 41641];
 
       checkReversePath = "loose";
+      extraCommands = ''
+        # Allow ICMP echo requests (ping) on all interfaces
+        iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+        iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT
+      '';
     };
   };
 
