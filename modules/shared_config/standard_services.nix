@@ -48,6 +48,10 @@ in
         port = 22;
       }
     ];
+    services.tailscale = {
+        enable = true;
+        useRoutingFeatures = if cfg.advertiseExitNode then "server" else "client";
+      };
     # create a oneshot job to authenticate to Tailscale
     systemd.services.tailscale-autoconnect = {
       description = "Automatic connection to Tailscale";
