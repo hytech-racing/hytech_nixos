@@ -9,7 +9,7 @@
       enable = true;
 
       # always allow traffic from your Tailscale network
-      trustedInterfaces = [ "lo" "tailscale0" "end0" "can0" "wlan0" "wwu1i4"];
+      trustedInterfaces = [ "tailscale0" "end0" "can0" "wlan0" "wwu1i4"];
 
       # allow the Tailscale UDP port through the firewall
       allowedUDPPorts = [ config.services.tailscale.port 8765 6969 8001 443 41641];
