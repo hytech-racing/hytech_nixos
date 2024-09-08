@@ -1,5 +1,11 @@
 ### user docs for HyTech's pi
 
+#### ports
+`8000`: param server
+`8001`: file server
+`6969`: old frontend
+
+
 #### starting and stopping recording
 
 Connect to http://192.168.203.1:6969/ once on the `ht08` wifi.

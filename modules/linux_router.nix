@@ -23,6 +23,7 @@ in {
   config = {
     # https://nixos.org/manual/nixos/stable/options.html search for systemd.services.<name>. to get list of all of the options for 
     # new systemd services
+    # https://github.com/garywill/linux-router/tree/master?tab=readme-ov-file#cli-usage-and-other-features
     systemd.services.linux_router = {
       wantedBy = [ "multi-user.target" ];
       serviceConfig.After = [ "network.target" ];
