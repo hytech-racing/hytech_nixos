@@ -30,10 +30,12 @@ in
       chown nixos:users /home/nixos/config
     '';
 
-    # Write JSON content to /home/nixos/config/drivebrain_config.json
+    # Write JSON content from repo to /home/nixos/config/drivebrain_config.json file if it doesn't exist
     system.activationScripts.writeConfigFile = pkgs.lib.mkForce ''
-      echo ''${jsonContent} > /home/nixos/config/drivebrain_config.json
-      chown nixos:users /home/nixos/config/drivebrain_config.json
+      if [ ! -f "/home/nixos/config/drivebrain_config.json" ]; then
+        echo "${jsonContent}" > "/home/nixos/config/drivebrain_config.json"
+        chown nixos:users /home/nixos/config/drivebrain_config.json
+      fi
     '';
     
   };
