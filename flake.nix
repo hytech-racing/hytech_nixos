@@ -8,10 +8,10 @@
   };
 
   inputs = rec {
-    ht_can.url = "github:hytech-racing/ht_can/121";
+    ht_can.url = "github:hytech-racing/ht_can/132";
     hytech_data_acq.url = "github:hytech-racing/data_acq/2024-04-27T00_26_50";
     hytech_data_acq.inputs.ht_can_pkg_flake.follows = "ht_can";
-    drivebrain-software.url = "github:hytech-racing/drivebrain_software/feature/controller-manager";
+    drivebrain-software.url = "github:hytech-racing/drivebrain_software/feature/state_estimation_logging";
     aero_sensor_logger.url = "github:hytech-racing/aero_sensor_logger/8ff36ab9256d6f22ad04aff68c3fabc5f2de796d";
     hytech_params_server.url = "github:hytech-racing/HT_params/2024-05-26T15_33_34";
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix/b39b556e8a1c4bd6f8a59e8719dc1f658f18f255";
@@ -34,9 +34,14 @@
                 useQrencode = false;
               };
             })
+            (final: prev: {
+              
+            })
             drivebrain-software.overlays.default
+            drivebrain-software.inputs.matlab-math.overlays.default
             drivebrain-software.inputs.easy_cmake.overlays.default
             drivebrain-software.inputs.nebs-packages.overlays.default
+            drivebrain-software.inputs.vn_driver_lib.overlays.default
           ];
       };
 
@@ -54,7 +59,7 @@
     ];
 
     hytech_service_modules = [
-      ./modules/data_acq.nix
+      # ./modules/data_acq.nix
       ./modules/can_network.nix
       ./modules/simple_http_server.nix
       ./modules/param_webserver.nix
@@ -76,14 +81,14 @@
           (
             { config, options, ... }: rec {
               nixpkgs.hostPlatform.system = "aarch64-linux";
-              services.data_writer.mcu-ip = "192.168.1.30";
-              services.data_writer.recv-ip = "192.168.1.69";
-              services.data_writer.send-to-mcu-port = 20000;
-              services.data_writer.recv-from-mcu-port = 20001;
+              # services.data_writer.mcu-ip = "192.168.1.30";
+              # services.data_writer.recv-ip = "192.168.1.69";
+              # services.data_writer.send-to-mcu-port = 20000;
+              # services.data_writer.recv-from-mcu-port = 20001;
               services.linux_router.host-ip = "192.168.203.1";
               services.http_server.port = 8001;
               services.param_webserver.enable = true;
-              drivebrain-service.enable =true;
+              drivebrain-service.enable = true;
               raspberry-pi-nix.libcamera-overlay.enable = false;
               # aero-sensor-logger.enable = true;
               # service_names.url-name = ".car";
@@ -128,7 +133,9 @@
         ];
     };
 
-
+    packages = import nixpkgs{
+      system = "x86_64-linux";
+    };
     virtualbox_vm_modules = { modules = support_vm_config.modules ++ [ ./modules/vm_config/virtualbox_config.nix ]; };
     cc_vm_modules = { modules = support_vm_config.modules ++ [ ./modules/vm_config/basic_vm_hw.nix ]; };
     # Use nixos-generate to create the VMs
