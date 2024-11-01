@@ -18,7 +18,7 @@ in
 
       serviceConfig = {
         After = [ "network.target" ];
-        ExecStart = "${pkgs.drivebrain_software}/bin/alpha_build /home/nixos/config/drivebrain_config.json ${pkgs.ht_can_pkg}/hytech.dbc";
+        ExecStart = "${pkgs.drivebrain_software}/bin/alpha_build -p /home/nixos/config/drivebrain_config.json -d ${pkgs.ht_can_pkg}/hytech.dbc";
         ExecStop = "/bin/kill -9 $MAINPID";
         Restart = "on-failure";
       };
