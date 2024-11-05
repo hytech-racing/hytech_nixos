@@ -11,11 +11,12 @@
     ht_can.url = "github:hytech-racing/ht_can/133";
     hytech_data_acq.url = "github:hytech-racing/data_acq/2024-04-27T00_26_50";
     hytech_data_acq.inputs.ht_can_pkg_flake.follows = "ht_can";
-    drivebrain-software.url = "github:hytech-racing/drivebrain_software";
+    drivebrain-software.url = "github:hytech-racing/drivebrain_software/feature/new_tv";
     aero_sensor_logger.url = "github:hytech-racing/aero_sensor_logger/8ff36ab9256d6f22ad04aff68c3fabc5f2de796d";
     hytech_params_server.url = "github:hytech-racing/HT_params/2024-05-26T15_33_34";
     raspberry-pi-nix.url = "github:tstat/raspberry-pi-nix/b39b556e8a1c4bd6f8a59e8719dc1f658f18f255";
     nixpkgs.url = "github:NixOS/nixpkgs/8bf65f17d8070a0a490daf5f1c784b87ee73982c";
+
 
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     nixos-generators = {
