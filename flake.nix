@@ -88,7 +88,7 @@
               # services.data_writer.recv-from-mcu-port = 20001;
               services.linux_router.host-ip = "192.168.203.1";
               services.http_server.port = 8001;
-              services.param_webserver.enable = true;
+              services.param_webserver.enable = false;
               drivebrain-service.enable = true;
               raspberry-pi-nix.libcamera-overlay.enable = false;
               # aero-sensor-logger.enable = true;
