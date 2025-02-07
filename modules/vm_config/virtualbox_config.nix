@@ -1,6 +1,13 @@
-{ config, ... }:
+{ lib, config, ... }:
 {
-  config = {
+
+  options.virtualbox_config.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable or disable the virtual box config";
+  };
+
+  config = lib.mkIf config.virtualbox_config.enable {
     virtualisation.virtualbox.guest.enable = true;
     boot.kernelModules = [ "vboxguest" "vboxsf" ];
     services.getty.autologinUser = "root";

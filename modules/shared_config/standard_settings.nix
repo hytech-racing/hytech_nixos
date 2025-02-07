@@ -1,7 +1,14 @@
 # contains the shared configuration for nix, the nixos user on tcu, standard programs
 { config, lib, ... }:
 {
-  config = {
+
+  options.standard-settings.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable or disable standard settings";
+  };
+
+  config = lib.mkIf config.standard-settings.enable {
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     nix.settings.require-sigs = false;
     users.users.nixos.group = "nixos";

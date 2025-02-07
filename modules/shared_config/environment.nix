@@ -1,6 +1,13 @@
-{ self, config, pkgs, ... }:
+{ self, lib, config, pkgs, ... }:
 {
-  config = {
+
+  options.hytech-nixos-environment.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable or disable the hytech nixos environment";
+  };
+
+  config = lib.mkIf config.hytech-nixos-environment.enable {
     environment.etc."hytech_nixos".source = self;
     environment.systemPackages = [
       pkgs.can-utils

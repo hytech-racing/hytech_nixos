@@ -1,6 +1,13 @@
 { lib, pkgs, config, ... }:
 {
-  config = {
+
+  options.tcu_config.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable or disable the tcu config";
+  };
+
+  config = lib.mkIf config.tcu_config.enable {
     networking.wireless = {
       enable = true;
       interfaces = [ "wlan0" ];
@@ -32,45 +39,34 @@
       };
     };
     hardware = {
-      bluetooth.enable = true;
-      raspberry-pi = {
-        config = {
-          all = {
-            base-dt-params = {
-              #           # enable autoprobing of bluetooth driver
-              #           # https://github.com/raspberrypi/linux/blob/c8c99191e1419062ac8b668956d19e788865912a/arch/arm/boot/dts/overlays/README#L222-L224
-              krnbt = {
-                enable = true;
-                value = "on";
-              };
-              spi = {
-                enable = true;
-                value = "on";
-              };
-            };
-            dt-overlays = {
-              spi-bcm2835 = {
-                enable = true;
-                params = { };
-              };
-              mcp2515-can0 = {
-                enable = true;
-                params = {
-                  oscillator =
+        raspberry-pi = {
+            config = {
+              all = {
+
+                options = {
+                  i2c_arm_baudrate =
                     {
                       enable = true;
-                      value = "16000000";
+                      value = 400000;
                     };
-                  interrupt = {
+                };
+                base-dt-params = {
+                  uart0 = {
                     enable = true;
-                    value = "16"; # this is the individual gpio number for the interrupt of the spi boi
+                    value = "on";
+                  };
+                  i2c_arm = {
+                    enable = true;
+                    value = "on";
+                  };
+                  spi = {
+                    enable = true;
+                    value = "on";
                   };
                 };
               };
-            };
           };
         };
       };
-    };
   };
 }
