@@ -3,9 +3,11 @@
 {
 
   options.standard-settings.enable = lib.mkOption {
+
     type = lib.types.bool;
     default = false;
     description = "Enable or disable standard settings";
+    
   };
 
   config = lib.mkIf config.standard-settings.enable {
@@ -31,12 +33,12 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZRFnx0tlpUAFqnEqP2R/1y8oIAPXhL2vW/UU727vw8 eddsa-key-Pranav"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBFBuvjOko9dUmM1Dd44xwlNdoE7y+E8UEu1mTgxxj0W hytech@nixos"
     ];
-  programs.git = {
-    enable = true;
-    config = {
-      user.name = "Ben Hall";
-      user.email = "rcmast3r1@gmail.com";
+    programs.git = {
+      enable = true;
+      config = {
+        user.name = "Ben Hall";
+        user.email = "rcmast3r1@gmail.com";
+      };
     };
-  };
   };
 }

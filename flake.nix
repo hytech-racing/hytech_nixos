@@ -12,7 +12,7 @@
     ht_can.url = "github:hytech-racing/ht_can/133";
     hytech_data_acq.url = "github:hytech-racing/data_acq";
     hytech_data_acq.inputs.ht_can_pkg_flake.follows = "ht_can";
-    drivebrain-software.url = "github:hytech-racing/drivebrain_software/master";
+    drivebrain-software.url = "github:hytech-racing/drivebrain_software/56869c8e726a1b8081429d35d037c07a87b590bc";
     nix-proto.url = "github:notalltim/nix-proto";
     drivebrain-software.inputs.nix-proto.follows = "nix-proto";
     aero_sensor_logger.url = "github:hytech-racing/aero_sensor_logger/8ff36ab9256d6f22ad04aff68c3fabc5f2de796d";
@@ -30,70 +30,6 @@
   };
 
   outputs = { self, nixpkgs, hytech_data_acq, raspberry-pi-nix, nixos-generators, home-manager, hytech_params_server, aero_sensor_logger, drivebrain-software, ...}@inputs: rec {
-
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
-    nix.settings.require-sigs = false;
-    security.sudo.enable = true;
-    hardware.i2c.enable = true;
-
-    environment.systemPackages = [
-      nixpkgs.tmux
-      nixpkgs.ser2net
-      nixpkgs.i2c-tools
-      (nixpkgs.python3.withPackages (ps: with ps; [ numpy pandas smbus2 i2c-tools ]))
-    ];
-
-    systemd.services.sshd.wantedBy = nixpkgs.lib.mkOverride 40 [ "multi-user.target" ];
-
-    services.openssh.enable = true;
-
-    services.openssh.listenAddresses = [
-      {
-        addr = "0.0.0.0";
-        port = 22;
-      }
-      {
-        addr = ":";
-        port = 22;
-      }
-    ];
-
-    time.timeZone = "America/New_York";
-    # users.users.root.initialPassword = "root";
-    # users.users.nixos.group = "nixos";
-
-    # users.users.nixos.password = "nixos";
-    # users.groups.nixos = { };
-    # users.users.nixos.extraGroups = [ "wheel" "dialout" "i2c" "video" ];
-
-    # users.users.nixos.isNormalUser = true;
-    users = {
-      mutableUsers = false;
-      users."hytech" = {
-        isNormalUser = true;
-        initialPassword = "password";
-        extraGroups = [ "wheel" "dialout" "i2c" "video" ];
-      };
-    };
-
-    networking.firewall.enable = false;
-
-    networking.interfaces.eth0.ipv4 = {
-          addresses = [
-            {
-              address = "169.254.3.5"; # Your static IP address
-              prefixLength = 16; # Netmask, 24 for 255.255.255.0
-            }
-          ];
-          routes = [
-            {
-              address = "0.0.0.0";
-              prefixLength = 0;
-              via = "169.254.3.1"; # Your gateway IP address
-            }
-          ];
-        };
-        # raspberry-pi-nix.board = "bcm2712";
     
     nixpkg_overlays =
       {
@@ -155,6 +91,11 @@
               services.http_server.port = 8001;
               drivebrain-service.enable = true;
               tcu_config.enable = true;
+              hytech-nixos-environment.enable = true;
+              hytech-nixos-networking.enable = true;
+              standard-services.enable = true;
+              standard-settings.enable = true;
+              linux_router.enable = true;
 
               raspberry-pi-nix.libcamera-overlay.enable = false;
               raspberry-pi-nix.board = "bcm2712";

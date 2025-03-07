@@ -8,11 +8,11 @@
 
 #### starting and stopping recording
 
-Connect to http://192.168.203.1:6969/ once on the `ht08` wifi.
+Connect to http://192.168.203.1:6969/ once on the `ht09` wifi.
 
 #### getting files off the car
 
-1. connect to the pi's local wifi network named `ht08`
+1. connect to the pi's local wifi network named `ht09`
 2. open a command prompt that has ssh installed (powershell or bash)
 3. `scp nixos@192.168.203.1:/home/nixos/recordings/* .` (password is `nixos`)
 

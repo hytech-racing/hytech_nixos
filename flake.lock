@@ -21,16 +21,16 @@
     "HT_proto": {
       "flake": false,
       "locked": {
-        "lastModified": 1731028403,
-        "narHash": "sha256-4os2JtvGrDJvOxIxsH0HzwnmeQ4EzO5Gge8VDILXdMM=",
+        "lastModified": 1739773905,
+        "narHash": "sha256-VWA9cM2Ra/xWUoWZw+inJ1HesMEXrQmNiquJUuyT2R8=",
         "owner": "hytech-racing",
         "repo": "HT_proto",
-        "rev": "029b34e850986a08ab20bf4818bb6699b333bb1d",
+        "rev": "d0399cbef06ecc51afab470db698b6e3d1cf62a4",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "2024-11-08T01_13_42",
+        "ref": "2025-02-17T06_32_03",
         "repo": "HT_proto",
         "type": "github"
       }
@@ -113,15 +113,16 @@
     "db-core-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1731609678,
-        "narHash": "sha256-AC96vyQBl/h6/4o1QuNGimJywy2T7p6tfe2ePWLwkqM=",
+        "lastModified": 1739899350,
+        "narHash": "sha256-9BYbFPgHMOP756AhWICIzg6qxTdBcT831bO0QhI3WPM=",
         "owner": "hytech-racing",
         "repo": "drivebrain_core",
-        "rev": "945279a1b4da90b4aab78346d8e1155c43c94281",
+        "rev": "a90ba76b5ff105814c1fd64e8112b5eae5f5bae4",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
+        "ref": "feature/low_level_inputs",
         "repo": "drivebrain_core",
         "type": "github"
       }
@@ -170,26 +171,26 @@
         "flake-parts": "flake-parts",
         "foxglove-schemas-src": "foxglove-schemas-src",
         "ht_can": "ht_can",
+        "nanopb-proto-api": "nanopb-proto-api",
         "nebs-packages": "nebs-packages",
         "nix-proto": [
           "nix-proto"
         ],
         "nixpkgs": "nixpkgs_7",
-        "simulink-automation-src": "simulink-automation-src",
         "vn_driver_lib": "vn_driver_lib"
       },
       "locked": {
-        "lastModified": 1736707822,
-        "narHash": "sha256-P5n+DddRr3N/xYUyvB/kUEuzM+prhmkawTKPe6EUuqM=",
+        "lastModified": 1741040528,
+        "narHash": "sha256-ls+YAOuo7PUDSTzW+/U1fUiMi4KYep4va4Hf4t3k9eE=",
         "owner": "hytech-racing",
         "repo": "drivebrain_software",
-        "rev": "21d404424a633a3562d54131f58246f6c81a8fbf",
+        "rev": "56869c8e726a1b8081429d35d037c07a87b590bc",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "master",
         "repo": "drivebrain_software",
+        "rev": "56869c8e726a1b8081429d35d037c07a87b590bc",
         "type": "github"
       }
     },
@@ -435,16 +436,33 @@
     "foxglove-ws-protocol-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1723342974,
-        "narHash": "sha256-H3+xOxcKwHyrbT1d5P4KvpoMCfj3mCK9mxeegeFIHmA=",
+        "lastModified": 1739446424,
+        "narHash": "sha256-WaVgddlE5sDAP2Z7ICy3IB38L7YN3XzGOakEPBvz+PE=",
         "owner": "RCMast3r",
         "repo": "ws-protocol",
-        "rev": "bdae89350a6d0b463fa648023171d10b6eb5d594",
+        "rev": "8ff400492ddfadc026bb24faf211697e8b59468c",
         "type": "github"
       },
       "original": {
         "owner": "RCMast3r",
         "repo": "ws-protocol",
+        "type": "github"
+      }
+    },
+    "gtsam-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1693794078,
+        "narHash": "sha256-HjpGrHclpm2XsicZty/rX/RM/762wzmj4AAoEfni8es=",
+        "owner": "borglab",
+        "repo": "gtsam",
+        "rev": "4f66a491ffc83cf092d0d818b11dc35135521612",
+        "type": "github"
+      },
+      "original": {
+        "owner": "borglab",
+        "ref": "4.2.0",
+        "repo": "gtsam",
         "type": "github"
       }
     },
@@ -480,16 +498,16 @@
         "utils": "utils_5"
       },
       "locked": {
-        "lastModified": 1731619316,
-        "narHash": "sha256-DijyIAPp+YzR6jdVYLPhAfH63CxbPbt835Ev6hSPTLI=",
+        "lastModified": 1739624640,
+        "narHash": "sha256-g12QwiJYTQmlNPyCrqetNCMuZVsLL1wzHe5vBVITfvs=",
         "owner": "hytech-racing",
         "repo": "ht_can",
-        "rev": "e0ccc0f15f9fdf93cd1bd1c93c32cf93c162d85f",
+        "rev": "0a3f0cd7062cab8d494eb62c6f622de6e913a114",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "enums",
+        "ref": "141",
         "repo": "ht_can",
         "type": "github"
       }
@@ -690,6 +708,22 @@
         "type": "github"
       }
     },
+    "nanopb-proto-api": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736537572,
+        "narHash": "sha256-+vIvF7t58oB+QrxUBlHoQxLpbkOKv1Oy07ggyXnn4go=",
+        "owner": "nanopb",
+        "repo": "nanopb",
+        "rev": "fc7d53c3fea3ce04af5b98234feaa1c7400f73d6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nanopb",
+        "repo": "nanopb",
+        "type": "github"
+      }
+    },
     "nebs-packages": {
       "inputs": {
         "commsdsl-src": "commsdsl-src",
@@ -700,19 +734,21 @@
         "flow-ipc-src": "flow-ipc-src",
         "foxglove-mcap-src": "foxglove-mcap-src",
         "foxglove-ws-protocol-src": "foxglove-ws-protocol-src",
+        "gtsam-src": "gtsam-src",
         "libsocketcanpp-src": "libsocketcanpp-src",
         "nix-proto": "nix-proto_2",
         "nixpkgs": [
           "drivebrain-software",
           "nixpkgs"
-        ]
+        ],
+        "soem-src": "soem-src"
       },
       "locked": {
-        "lastModified": 1728342286,
-        "narHash": "sha256-BiaoZV0F8yvmM3P4rKxEM8RWZw6JZs/zIdx1RjieOLw=",
+        "lastModified": 1739446508,
+        "narHash": "sha256-ARAcuJ1twR7tUQGzqn+UGyFzuoX+wVpyrOvZ4yrgqYo=",
         "owner": "RCMast3r",
         "repo": "nebs_packages",
-        "rev": "2d0f791a05fe5e3d1fb241d574be1624bbcff2ca",
+        "rev": "803448c63e96783ef4b280318a276cc63ba00f09",
         "type": "github"
       },
       "original": {
@@ -998,11 +1034,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737057290,
-        "narHash": "sha256-3Pe0yKlCc7EOeq1X/aJVDH0CtNL+tIBm49vpepwL1MQ=",
+        "lastModified": 1740947705,
+        "narHash": "sha256-Co2kAD2SZalOm+5zoxmzEVZNvZ17TyafuFsD46BwSdY=",
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "d002ce9b6e7eb467cd1c6bb9aef9c35d191b5453",
+        "rev": "507911df8c35939050ae324caccc7cf4ffb76565",
         "type": "github"
       },
       "original": {
@@ -1337,11 +1373,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1731386116,
-        "narHash": "sha256-lKA770aUmjPHdTaJWnP3yQ9OI1TigenUqVC3wweqZuI=",
+        "lastModified": 1735563628,
+        "narHash": "sha256-OnSAY7XDSx7CtDoqNh8jwVwh4xNL/2HaJxGjryLWzX8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "689fed12a013f56d4c4d3f612489634267d86529",
+        "rev": "b134951a4c9f3c995fd7be05f3243f8ecd65d798",
         "type": "github"
       },
       "original": {
@@ -1391,18 +1427,17 @@
         "rpi-bluez-firmware-src": "rpi-bluez-firmware-src",
         "rpi-firmware-nonfree-src": "rpi-firmware-nonfree-src",
         "rpi-firmware-src": "rpi-firmware-src",
-        "rpi-linux-6_10_12-src": "rpi-linux-6_10_12-src",
-        "rpi-linux-6_6_67-src": "rpi-linux-6_6_67-src",
+        "rpi-linux-6_12_17-src": "rpi-linux-6_12_17-src",
+        "rpi-linux-6_6_78-src": "rpi-linux-6_6_78-src",
         "rpi-linux-stable-src": "rpi-linux-stable-src",
-        "rpicam-apps-src": "rpicam-apps-src",
-        "u-boot-src": "u-boot-src"
+        "rpicam-apps-src": "rpicam-apps-src"
       },
       "locked": {
-        "lastModified": 1736358780,
-        "narHash": "sha256-t8++2QSK+8Ed506NUmSG588wZKoBkJ+dlDxuFxNAF4Y=",
+        "lastModified": 1740928520,
+        "narHash": "sha256-NL5qZi0iEEvQK9kMF6r48FOk5WMdQExCqodRH3kEr0g=",
         "owner": "nix-community",
         "repo": "raspberry-pi-nix",
-        "rev": "628e512d60fa99f8f49e73e39b7cedf9b968c282",
+        "rev": "3bfda6add79c55f9bf143fac928f54484d450e87",
         "type": "github"
       },
       "original": {
@@ -1479,31 +1514,31 @@
         "type": "github"
       }
     },
-    "rpi-linux-6_10_12-src": {
+    "rpi-linux-6_12_17-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1728305462,
-        "narHash": "sha256-LtvNmGD1D5YYv+C9xxxddAeHw69o3OX/H9M7F663L74=",
+        "lastModified": 1740765145,
+        "narHash": "sha256-hoCsGc4+RC/2LmxDtswLBL5ZhWlw4vSiL4Vkl39r2MU=",
         "owner": "raspberrypi",
         "repo": "linux",
-        "rev": "26ee50d56618c2d98100b1bc672fd201aed4d00f",
+        "rev": "5985ce32e511f4e8279a841a1b06a8c7d972b386",
         "type": "github"
       },
       "original": {
         "owner": "raspberrypi",
-        "ref": "rpi-6.10.y",
+        "ref": "rpi-6.12.y",
         "repo": "linux",
         "type": "github"
       }
     },
-    "rpi-linux-6_6_67-src": {
+    "rpi-linux-6_6_78-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1734790986,
-        "narHash": "sha256-q9swM2TmmuzbUuQnbLZk5PseKWD7/SNPwtth6bpGIqE=",
+        "lastModified": 1740503700,
+        "narHash": "sha256-Y8+ot4Yi3UKwlZK3ap15rZZ16VZDvmeFkD46+6Ku7bE=",
         "owner": "raspberrypi",
         "repo": "linux",
-        "rev": "811ff707533bcd67cdcd368bbd46223082009b12",
+        "rev": "2e071057fded90e789c0101498e45a1778be93fe",
         "type": "github"
       },
       "original": {
@@ -1547,17 +1582,20 @@
         "type": "github"
       }
     },
-    "simulink-automation-src": {
+    "soem-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1731476452,
-        "narHash": "sha256-8/4zg+iiuBELUoujGuklY3vt9inQdHSgurq8mgZbByo=",
-        "type": "tarball",
-        "url": "https://github.com/hytech-racing/simulink_automation/releases/download/CodeGen_2024.11.13_05-40/matlab_math.tar.gz"
+        "lastModified": 1737971577,
+        "narHash": "sha256-DK+fymGO4Q7XdXRLdVrGTU89zazMuL8+fNttFYCtS/o=",
+        "owner": "OpenEtherCATsociety",
+        "repo": "SOEM",
+        "rev": "2752dc25882ab24d7cfcad674226b65270fb0c61",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://github.com/hytech-racing/simulink_automation/releases/download/CodeGen_2024.11.13_05-40/matlab_math.tar.gz"
+        "owner": "OpenEtherCATsociety",
+        "repo": "SOEM",
+        "type": "github"
       }
     },
     "systems": {
@@ -1841,19 +1879,6 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "type": "github"
-      }
-    },
-    "u-boot-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1719857238,
-        "narHash": "sha256-mJ2TBy0Y5ZtcGFgtU5RKr0UDUp5FWzojbFb+o/ebRJU=",
-        "type": "tarball",
-        "url": "https://ftp.denx.de/pub/u-boot/u-boot-2024.07.tar.bz2"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://ftp.denx.de/pub/u-boot/u-boot-2024.07.tar.bz2"
       }
     },
     "utils": {

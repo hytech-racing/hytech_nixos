@@ -42,20 +42,8 @@
         raspberry-pi = {
             config = {
               all = {
-
-                options = {
-                  i2c_arm_baudrate =
-                    {
-                      enable = true;
-                      value = 400000;
-                    };
-                };
                 base-dt-params = {
-                  uart0 = {
-                    enable = true;
-                    value = "on";
-                  };
-                  i2c_arm = {
+                  krnbt = {
                     enable = true;
                     value = "on";
                   };
@@ -64,8 +52,24 @@
                     value = "on";
                   };
                 };
+                dt-overlays = {
+                  mcp2515-can0 = {
+                    enable = true;
+                    params = {
+                      oscillator =
+                      {
+                        enable = true;
+                        value = "16000000";
+                      };
+                      interrupt = {
+                        enable = true;
+                        value = "5"; # this is the individual gpio number for the interrupt of the spi boi
+                      };
+                    };
+                  };
+                };
               };
-          };
+            };
         };
       };
   };
