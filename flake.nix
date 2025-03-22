@@ -9,10 +9,11 @@
 
 
   inputs = {
-    ht_can.url = "github:hytech-racing/ht_can/133";
+    ht_can.url = "github:hytech-racing/ht_can/152";
     hytech_data_acq.url = "github:hytech-racing/data_acq";
     hytech_data_acq.inputs.ht_can_pkg_flake.follows = "ht_can";
-    drivebrain-software.url = "github:hytech-racing/drivebrain_software/56869c8e726a1b8081429d35d037c07a87b590bc";
+    drivebrain-software.url = "github:hytech-racing/drivebrain_software/e1299aa105e4cdf16eed18c15260d30d650327e0";
+    drivebrain-software.inputs.ht_can.follows = "ht_can";
     nix-proto.url = "github:notalltim/nix-proto";
     drivebrain-software.inputs.nix-proto.follows = "nix-proto";
     aero_sensor_logger.url = "github:hytech-racing/aero_sensor_logger/8ff36ab9256d6f22ad04aff68c3fabc5f2de796d";
