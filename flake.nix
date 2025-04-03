@@ -9,10 +9,10 @@
 
 
   inputs = {
-    ht_can.url = "github:hytech-racing/ht_can/133";
+    ht_can.url = "github:hytech-racing/ht_can/155";
     hytech_data_acq.url = "github:hytech-racing/data_acq";
     hytech_data_acq.inputs.ht_can_pkg_flake.follows = "ht_can";
-    drivebrain-software.url = "github:hytech-racing/drivebrain_software/56869c8e726a1b8081429d35d037c07a87b590bc";
+    drivebrain-software.url = "github:hytech-racing/drivebrain_software/dev/v1.1.0";
     nix-proto.url = "github:notalltim/nix-proto";
     drivebrain-software.inputs.nix-proto.follows = "nix-proto";
     aero_sensor_logger.url = "github:hytech-racing/aero_sensor_logger/8ff36ab9256d6f22ad04aff68c3fabc5f2de796d";
@@ -40,9 +40,6 @@
                 useQrencode = false;
               };
             })
-            # (final: prev: {
-            #   protobuf = 
-            # })
             drivebrain-software.overlays.default
             drivebrain-software.inputs.easy_cmake.overlays.default
             drivebrain-software.inputs.nebs-packages.overlays.default
@@ -52,11 +49,11 @@
       };
 
     shared_config_modules = [
+      ./modules/software_config/drivebrain_software.nix
       ./modules/shared_config/environment.nix
       ./modules/shared_config/networking.nix
       ./modules/shared_config/standard_settings.nix
       ./modules/shared_config/standard_services.nix
-      ./modules/software_config/drivebrain_software.nix
     ];
 
     tcu_config_modules = [
@@ -65,7 +62,6 @@
     ];
 
     hytech_service_modules = [
-      # ./modules/data_acq.nix
       ./modules/can_network.nix
       ./modules/simple_http_server.nix
     ];
