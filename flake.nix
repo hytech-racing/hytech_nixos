@@ -9,10 +9,10 @@
 
 
   inputs = {
-    ht_can.url = "github:hytech-racing/ht_can/152";
+    ht_can.url = "github:hytech-racing/ht_can/155";
     hytech_data_acq.url = "github:hytech-racing/data_acq";
     hytech_data_acq.inputs.ht_can_pkg_flake.follows = "ht_can";
-    drivebrain-software.url = "github:hytech-racing/drivebrain_software/e1299aa105e4cdf16eed18c15260d30d650327e0";
+    drivebrain-software.url = "github:hytech-racing/drivebrain_software/dev/v1.1.0";
     drivebrain-software.inputs.ht_can.follows = "ht_can";
     nix-proto.url = "github:notalltim/nix-proto";
     drivebrain-software.inputs.nix-proto.follows = "nix-proto";
@@ -41,9 +41,6 @@
                 useQrencode = false;
               };
             })
-            # (final: prev: {
-            #   protobuf = 
-            # })
             drivebrain-software.overlays.default
             drivebrain-software.inputs.easy_cmake.overlays.default
             drivebrain-software.inputs.nebs-packages.overlays.default
