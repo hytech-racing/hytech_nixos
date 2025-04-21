@@ -20,7 +20,7 @@
     networking.interfaces.end0.ipv4 = {
       addresses = [
         {
-          address = "192.168.1.69"; # Your static IP address
+          address = "192.168.1.30"; # Your static IP address
           prefixLength = 24; # Netmask, 24 for 255.255.255.0
         }
       ];

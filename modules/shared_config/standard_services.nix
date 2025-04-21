@@ -12,7 +12,7 @@ in
     };
     car-ip = mkOption {
       type = types.str;
-      default = "192.168.1.69";
+      default = "192.168.1.30";
     };
     car-wifi-ip = mkOption {
       type = types.str;
