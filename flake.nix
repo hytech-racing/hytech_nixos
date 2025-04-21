@@ -1,15 +1,12 @@
 {
   description = "Build image";
   nixConfig = {
-    extra-substituters = [ "https://ros.cachix.org" "https://nix-community.cachix.org" ];
-    extra-trusted-public-keys = [ "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo=" "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+    extra-substituters = [ "https://nix-community.cachix.org" ];
+    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
   };
 
-
-
-
   inputs = {
-    ht_can.url = "github:hytech-racing/ht_can/155";
+    ht_can.url = "github:hytech-racing/ht_can/158";
     hytech_data_acq.url = "github:hytech-racing/data_acq";
     hytech_data_acq.inputs.ht_can_pkg_flake.follows = "ht_can";
     drivebrain-software.url = "github:hytech-racing/drivebrain_software/dev/v1.1.0";
@@ -97,6 +94,7 @@
 
               raspberry-pi-nix.libcamera-overlay.enable = false;
               raspberry-pi-nix.board = "bcm2712";
+              # raspberry-pi-nix.kernel-version = "v6_12_17";
 
             }
           )
@@ -143,5 +141,6 @@
 
     images.tcu = nixosConfigurations.tcu.config.system.build.sdImage;
     tcu_top = nixosConfigurations.tcu.config.system.build.toplevel;
+    config_test = nixosConfigurations.tcu.config.hardware.raspberry-pi.config-output;
   };
 }

@@ -11,6 +11,9 @@
 
     environment.etc."hytech_nixos".source = self;
     environment.systemPackages = [
+      pkgs.dtc
+      
+      pkgs.libraspberrypi
       pkgs.can-utils
       pkgs.ethtool
       pkgs.python3

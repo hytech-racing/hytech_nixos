@@ -21,16 +21,16 @@
     "HT_proto": {
       "flake": false,
       "locked": {
-        "lastModified": 1742359623,
-        "narHash": "sha256-Lt+eedvEagB9fOCNGQiDFn6jIjPje0zzY9xF4QJEE9w=",
+        "lastModified": 1744328254,
+        "narHash": "sha256-N4JJyjXAkPn8B2V7opNnhuvJZ8CD/V/g0FD/sCZcl/c=",
         "owner": "hytech-racing",
         "repo": "HT_proto",
-        "rev": "11ba10f971a5beb52044c0b5d07c81867f7ad20b",
+        "rev": "22d4c819aedd716d924275ff89be61b3644face7",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "TCMUX",
+        "ref": "22d4c819aedd716d924275ff89be61b3644face7",
         "repo": "HT_proto",
         "type": "github"
       }
@@ -113,11 +113,11 @@
     "db-core-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1743463637,
-        "narHash": "sha256-RnNkdGOJ37JjVTWL+H6gSVJBOemy5jpTvL7zXh/m1Mk=",
+        "lastModified": 1744269183,
+        "narHash": "sha256-WR4r7QAh07J2QmN4Kl4x6YG/IZCBATOGLhhmW+FRJ8o=",
         "owner": "hytech-racing",
         "repo": "drivebrain_core",
-        "rev": "3e87f39c88c58dcdf6402a4e7667b915e54198e7",
+        "rev": "706d6bcc9c0a22a3e1c2c86d1789514bfb4b07cd",
         "type": "github"
       },
       "original": {
@@ -182,11 +182,11 @@
         "vn_driver_lib": "vn_driver_lib"
       },
       "locked": {
-        "lastModified": 1743750199,
-        "narHash": "sha256-iqfY9dBLMtfRtcRXDlF/+qv4y/8+aFGbgtdGWyM8wuY=",
+        "lastModified": 1745200974,
+        "narHash": "sha256-+19tR3ALPf6+yfUYBjswf0Odz545jmT/rVh2HxwM+RE=",
         "owner": "hytech-racing",
         "repo": "drivebrain_software",
-        "rev": "e6176f7bd4ed8f37545266a7b903820ab4919c48",
+        "rev": "dd606cec02ad86a670e3fedb431724054cb261fa",
         "type": "github"
       },
       "original": {
@@ -560,16 +560,16 @@
         "utils": "utils_7"
       },
       "locked": {
-        "lastModified": 1743635939,
-        "narHash": "sha256-iXr/Hq27PxyrfraQ8FBamDNw4oqhj5ec+KX7RD1Btg0=",
+        "lastModified": 1744791189,
+        "narHash": "sha256-jSGwYFCFO8MLDzov+jDgUc+IsmvZ9FZVauBkHZhqjlc=",
         "owner": "hytech-racing",
         "repo": "ht_can",
-        "rev": "29a781075684c4bd99d2db563c3fe6da132547aa",
+        "rev": "1de6a27b51ab074b3367002c0be06a492a3f8107",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "155",
+        "ref": "158",
         "repo": "ht_can",
         "type": "github"
       }
@@ -1558,11 +1558,11 @@
         "rpicam-apps-src": "rpicam-apps-src"
       },
       "locked": {
-        "lastModified": 1740928520,
-        "narHash": "sha256-NL5qZi0iEEvQK9kMF6r48FOk5WMdQExCqodRH3kEr0g=",
+        "lastModified": 1742223591,
+        "narHash": "sha256-ZNTz8r5jlJ1jvpqf5+aUYgpnYJSVX0iP14doOc1Hm0E=",
         "owner": "nix-community",
         "repo": "raspberry-pi-nix",
-        "rev": "3bfda6add79c55f9bf143fac928f54484d450e87",
+        "rev": "3e8100d5e976a6a2be363015cb33463af9ef441a",
         "type": "github"
       },
       "original": {
