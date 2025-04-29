@@ -35,10 +35,10 @@
     networking.can.enable = true;
     networking.can.interfaces = {
       can0 = {
-        bitrate = 500000;
+        bitrate = 500000; #
       };
       can1 = {
-        bitrate = 500000;
+        bitrate = 1000000; # 
       };
     };
 

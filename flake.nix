@@ -6,11 +6,13 @@
   };
 
   inputs = {
-    ht_can.url = "github:hytech-racing/ht_can/158";
+    ht_proto.url = "github:hytech-racing/HT_proto/2025-04-29T00_26_22";
+    ht_can.url = "github:hytech-racing/ht_can/159";
     hytech_data_acq.url = "github:hytech-racing/data_acq";
     hytech_data_acq.inputs.ht_can_pkg_flake.follows = "ht_can";
     drivebrain-software.url = "github:hytech-racing/drivebrain_software/dev/v1.1.0";
     drivebrain-software.inputs.ht_can.follows = "ht_can";
+    drivebrain-software.inputs.HT_proto.follows = "ht_proto";
     nix-proto.url = "github:notalltim/nix-proto";
     drivebrain-software.inputs.nix-proto.follows = "nix-proto";
     aero_sensor_logger.url = "github:hytech-racing/aero_sensor_logger/8ff36ab9256d6f22ad04aff68c3fabc5f2de796d";
@@ -60,9 +62,9 @@
     ];
 
     hytech_service_modules = [
-      # ./modules/data_acq.nix
       ./modules/can_network.nix
       ./modules/simple_http_server.nix
+      ./modules/grpcui.nix
     ];
 
     nixosConfigurations.tcu = nixpkgs.lib.nixosSystem {
@@ -74,7 +76,6 @@
         hytech_service_modules ++
         shared_config_modules ++ [
           (nixpkg_overlays)
-          # aero_sensor_logger.nixosModules.aarch64-linux.aero-sensor-logger
           home-manager.nixosModules.home-manager
           inputs.raspberry-pi-nix.nixosModules.raspberry-pi
           inputs.raspberry-pi-nix.nixosModules.sd-image
@@ -85,6 +86,8 @@
               services.linux_router.host-ip = "192.168.203.1";
               services.http_server.port = 8001;
               drivebrain-service.enable = true;
+              simple_http_server.enable = true;
+              services.grpcui.enable = true;
               tcu_config.enable = true;
               hytech-nixos-environment.enable = true;
               hytech-nixos-networking.enable = true;
