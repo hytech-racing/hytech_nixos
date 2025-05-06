@@ -12,7 +12,7 @@ in
     };
     car-ip = mkOption {
       type = types.str;
-      default = "192.168.1.69";
+      default = "192.168.1.30";
     };
     car-wifi-ip = mkOption {
       type = types.str;
@@ -35,7 +35,14 @@ in
       default = ["enp0s3" "test"];
     };
   };
-  config = {
+  
+  options.standard-services.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable or disable standard services";
+  };
+
+  config = lib.mkIf config.standard-services.enable {
     systemd.services.sshd.wantedBy = lib.mkOverride 40 [ "multi-user.target" ];
     services.openssh = { enable = true; };
     services.openssh.listenAddresses = [

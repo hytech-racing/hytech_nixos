@@ -10,7 +10,14 @@ in
       default = 8001;
     };
   };
-  config = {
+
+  options.simple_http_server.enable = mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable or disable the http server";
+  };
+
+  config = mkIf config.simple_http_server.enable {
     systemd.services.http_server = {
       wantedBy = [ "multi-user.target" ];
       description = "Allows you to access your MCAP files";

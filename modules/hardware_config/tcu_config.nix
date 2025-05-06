@@ -1,6 +1,13 @@
 { lib, pkgs, config, ... }:
 {
-  config = {
+
+  options.tcu_config.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable or disable the tcu config";
+  };
+
+  config = lib.mkIf config.tcu_config.enable {
     networking.wireless = {
       enable = true;
       interfaces = [ "wlan0" ];
@@ -13,7 +20,7 @@
     networking.interfaces.end0.ipv4 = {
       addresses = [
         {
-          address = "192.168.1.69"; # Your static IP address
+          address = "192.168.1.30"; # Your static IP address
           prefixLength = 24; # Netmask, 24 for 255.255.255.0
         }
       ];
@@ -28,17 +35,22 @@
     networking.can.enable = true;
     networking.can.interfaces = {
       can0 = {
-        bitrate = 500000;
+        bitrate = 500000; #
+      };
+      can1 = {
+        bitrate = 1000000; # 
       };
     };
+
     hardware = {
-      bluetooth.enable = true;
+      # deviceTree.overlays = [
+      #   {name="ht-mcp-2515-can1-overlay"; dtboFile = ./ht-mcp-2515-can1-overlay.dtbo; }
+      #   {name="ht-mcp-2515-can0-overlay"; dtboFile = ./ht-mcp-2515-can0-overlay.dtbo; }
+      # ];
       raspberry-pi = {
         config = {
           all = {
             base-dt-params = {
-              #           # enable autoprobing of bluetooth driver
-              #           # https://github.com/raspberrypi/linux/blob/c8c99191e1419062ac8b668956d19e788865912a/arch/arm/boot/dts/overlays/README#L222-L224
               krnbt = {
                 enable = true;
                 value = "on";
@@ -47,12 +59,13 @@
                 enable = true;
                 value = "on";
               };
-            };
-            dt-overlays = {
-              spi-bcm2835 = {
-                enable = true;
-                params = { };
+              i2c = {
+                enable =true;
+                value="off";
               };
+            };
+
+            dt-overlays = {
               mcp2515-can0 = {
                 enable = true;
                 params = {
@@ -63,7 +76,21 @@
                     };
                   interrupt = {
                     enable = true;
-                    value = "16"; # this is the individual gpio number for the interrupt of the spi boi
+                    value = "22"; # this is the individual gpio number for the interrupt of the spi boi
+                  };
+                };
+              };
+              mcp2515-can1 = {
+                enable = true;
+                params = {
+                  oscillator =
+                    {
+                      enable = true;
+                      value = "16000000";
+                    };
+                  interrupt = {
+                    enable = true;
+                    value = "13"; # this is the individual gpio number for the interrupt of the spi boi
                   };
                 };
               };

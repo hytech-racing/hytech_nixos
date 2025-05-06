@@ -7,6 +7,14 @@ let
   cfg = config.services.linux_router;
   
 in {
+
+  options.linux_router.enable = mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable or disable the linux router config";
+  };
+
+  
   options.services.linux_router = {
     # Option declarations.
     # Declare what settings a user of this module module can set.
@@ -17,10 +25,11 @@ in {
     };
     hotspot-name = mkOption {
       type = types.str;
-      default = "ht08";
+      default = "ht09";
     };
+
   };
-  config = {
+  config = mkIf config.linux_router.enable {
     # https://nixos.org/manual/nixos/stable/options.html search for systemd.services.<name>. to get list of all of the options for 
     # new systemd services
     # https://github.com/garywill/linux-router/tree/master?tab=readme-ov-file#cli-usage-and-other-features

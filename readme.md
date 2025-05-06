@@ -8,11 +8,11 @@
 
 #### starting and stopping recording
 
-Connect to http://192.168.203.1:6969/ once on the `ht08` wifi.
+Connect to http://192.168.203.1:6969/ once on the `ht09` wifi.
 
 #### getting files off the car
 
-1. connect to the pi's local wifi network named `ht08`
+1. connect to the pi's local wifi network named `ht09`
 2. open a command prompt that has ssh installed (powershell or bash)
 3. `scp nixos@192.168.203.1:/home/nixos/recordings/* .` (password is `nixos`)
 
@@ -35,7 +35,7 @@ typical workflow:
 1. Pull from Github
 2. Update nix flake with `nix flake update`
 4. build with 
-    - `nix build .#tcu_top --system aarch64-linux` for the tcu
+    - `nix build .#nixosConfigurations.tcu.config.system.build.sdImage --builders "ssh://ubuntu@100.125.71.41 aarch64-linux - - - big-parallel" --system aarch64-linux --system-features big-parallel --max-jobs 0 -L`
 5. connect to `ht08` wifi network while tcu is on
 6. `nix-copy-closure --to nixos@192.168.203.1 result/` (will have store path as part of output to switch to. this exact store path will be switched to)
 7. (ssh into pi `ssh nixos@192.168.203.1`) password is `nixos`

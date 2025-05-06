@@ -1,6 +1,14 @@
-{ config, ... }: {
+{ lib, config, ... }: {
+
+  options.basic-vm-hw.enable = lib.mkOption {
+    type = lib.types.bool;
+    default = false;
+    description = "Enable or disable basic vm hardware";
+  };
+
+
   # System configuration
-  config = {
+  config = lib.mkIf config.basic-vm-hw.enable {
     boot.loader.grub = {
       enable = true;
       device = "/dev/sda"; # Use the specific device path for GRUB installation
