@@ -53,46 +53,46 @@ in {
         port = 22;
       }
     ];
-    networking.nameservers = [ "127.0.0.1" ];
-    services.resolved.enable = false;
-    services.dnsmasq = {
-      enable = true;
-      settings = {
-        domain-needed = true;
-        bogus-priv = true;
-        dhcp-authoritative = true;
+    # networking.nameservers = [ "127.0.0.1" ];
+    # services.resolved.enable = false;
+    # services.dnsmasq = {
+    #   enable = true;
+    #   settings = {
+    #     domain-needed = true;
+    #     bogus-priv = true;
+    #     dhcp-authoritative = true;
 
-        # Listen on all interfaces
-        interface =
-          "lo"; # default loopback to prevent dnsmasq from not starting
-        except-interface = "none"; # disables interface filtering
+    #     # Listen on all interfaces
+    #     interface =
+    #       "lo"; # default loopback to prevent dnsmasq from not starting
+    #     except-interface = "none"; # disables interface filtering
 
-        # Enable DHCP on all interfaces (listen-address 0.0.0.0 does this)
-        listen-address = [ "0.0.0.0" ];
+    #     # Enable DHCP on all interfaces (listen-address 0.0.0.0 does this)
+    #     listen-address = [ "0.0.0.0" ];
 
-        dhcp-range = [
-          "interface:eth0,192.168.1.50,192.168.1.150,12h"
-          "interface:end0,192.168.1.50,192.168.1.150,12h"
-        ];
+    #     dhcp-range = [
+    #       "interface:eth0,192.168.1.50,192.168.1.150,12h"
+    #       "interface:end0,192.168.1.50,192.168.1.150,12h"
+    #     ];
 
-        dhcp-option = [
-          "interface:eth0,option:router,192.168.1.30"
-          "interface:eth0,option:netmask,255.255.255.0"
-          "interface:end0,option:router,192.168.1.30"
-          "interface:end0,option:netmask,255.255.255.0"
-        ];
+    #     dhcp-option = [
+    #       "interface:eth0,option:router,192.168.1.30"
+    #       "interface:eth0,option:netmask,255.255.255.0"
+    #       "interface:end0,option:router,192.168.1.30"
+    #       "interface:end0,option:netmask,255.255.255.0"
+    #     ];
 
-        address = [ "/files.car/192.168.1.30" "/files-wifi.car/192.168.203.1" ];
-      };
-    };
+    #     address = [ "/files.car/192.168.1.30" "/files-wifi.car/192.168.203.1" ];
+    #   };
+    # };
 
-    services.nginx = {
-      enable = true;
-      virtualHosts."files.car" = {
-        locations."/".proxyPass = "http://127.0.0.1:8001";
-      };
+    # services.nginx = {
+    #   enable = true;
+    #   virtualHosts."files.car" = {
+    #     locations."/".proxyPass = "http://127.0.0.1:8001";
+    #   };
       
-    };
+    # };
   };
 }
 
