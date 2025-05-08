@@ -23,9 +23,7 @@
     system.stateVersion = "23.11";
     system.activationScripts.createRecordingsDir = lib.stringAfter [ "users" ] ''
       mkdir -p /home/nixos/recordings
-      mkdir -p /home/nixos/aero_sensor_recordings
       chown nixos:users /home/nixos/recordings
-      chown nixos:users /home/nixos/aero_sensor_recordings
     '';
     users.extraUsers.nixos.openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJSt9Z8Qdq068xj/ILVAMqmkVyUvKCSTsdaoehEZWRut rcmast3r1@gmail.com"

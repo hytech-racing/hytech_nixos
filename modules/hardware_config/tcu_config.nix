@@ -16,7 +16,7 @@
       ''
         192.168.203.1 hytech-pi
       '';
-    systemd.services.wpa_supplicant.wantedBy = lib.mkOverride 10 [ "default.target" ];
+    # systemd.services.wpa_supplicant.wantedBy = lib.mkOverride 10 [ "default.target" ];
     networking.interfaces.end0.ipv4 = {
       addresses = [
         {

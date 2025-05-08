@@ -8,15 +8,12 @@
   inputs = {
     ht_proto.url = "github:hytech-racing/HT_proto/2025-05-07T00_27_37";
     ht_can.url = "github:hytech-racing/ht_can/159";
-    hytech_data_acq.url = "github:hytech-racing/data_acq";
-    hytech_data_acq.inputs.ht_can_pkg_flake.follows = "ht_can";
     drivebrain-software.url = "github:hytech-racing/drivebrain_software/dev/v1.1.0";
     drivebrain-software.inputs.ht_can.follows = "ht_can";
     drivebrain-software.inputs.HT_proto.follows = "ht_proto";
     nix-proto.url = "github:notalltim/nix-proto";
     drivebrain-software.inputs.nix-proto.follows = "nix-proto";
-    aero_sensor_logger.url = "github:hytech-racing/aero_sensor_logger/8ff36ab9256d6f22ad04aff68c3fabc5f2de796d";
-    hytech_params_server.url = "github:hytech-racing/HT_params/2024-05-26T15_33_34";
+    
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     nixpkgs.url = "github:NixOS/nixpkgs";
     nixpkgs.follows = "raspberry-pi-nix/nixpkgs";
@@ -31,11 +28,11 @@
     nixos-shell.url = "github:Mic92/nixos-shell";
   };
 
-  outputs = { self, nixpkgs, hytech_data_acq, raspberry-pi-nix, nixos-generators, home-manager, hytech_params_server, aero_sensor_logger, drivebrain-software, ...}@inputs: rec {
+  outputs = { self, nixpkgs, raspberry-pi-nix, nixos-generators, home-manager, drivebrain-software, ...}@inputs: rec {
     
     nixpkg_overlays =
       {
-        nixpkgs.overlays = aero_sensor_logger.overlays.aarch64-linux ++ hytech_params_server.overlays.aarch64-linux ++ hytech_data_acq.overlays.aarch64-linux ++
+        nixpkgs.overlays =
           [
             (self: super: {
               linux-router = super.linux-router.override {
@@ -46,6 +43,7 @@
             drivebrain-software.inputs.easy_cmake.overlays.default
             drivebrain-software.inputs.nebs-packages.overlays.default
             drivebrain-software.inputs.vn_driver_lib.overlays.default
+            drivebrain-software.inputs.ht_can.overlays.default
 
           ];
       };
