@@ -6,3 +6,4 @@ result-bin
 result-bin/
 result-dev/
 result-dev
+*.qcow2

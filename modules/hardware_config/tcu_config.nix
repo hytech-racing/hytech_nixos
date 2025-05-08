@@ -35,18 +35,14 @@
     networking.can.enable = true;
     networking.can.interfaces = {
       can0 = {
-        bitrate = 500000; #
+        bitrate = 1000000; #
       };
       can1 = {
-        bitrate = 1000000; # 
+        bitrate = 500000; # 
       };
     };
 
-    hardware = {
-      # deviceTree.overlays = [
-      #   {name="ht-mcp-2515-can1-overlay"; dtboFile = ./ht-mcp-2515-can1-overlay.dtbo; }
-      #   {name="ht-mcp-2515-can0-overlay"; dtboFile = ./ht-mcp-2515-can0-overlay.dtbo; }
-      # ];
+    hardware = {  
       raspberry-pi = {
         config = {
           all = {
@@ -80,20 +76,20 @@
                   };
                 };
               };
-              mcp2515-can1 = {
-                enable = true;
-                params = {
-                  oscillator =
-                    {
-                      enable = true;
-                      value = "16000000";
-                    };
-                  interrupt = {
-                    enable = true;
-                    value = "13"; # this is the individual gpio number for the interrupt of the spi boi
-                  };
-                };
-              };
+              # mcp2515-can1 = {
+              #   enable = true;
+              #   params = {
+              #     oscillator =
+              #       {
+              #         enable = true;
+              #         value = "16000000";
+              #       };
+              #     interrupt = {
+              #       enable = true;
+              #       value = "13"; # this is the individual gpio number for the interrupt of the spi boi
+              #     };
+              #   };
+              # };
             };
           };
         };

@@ -6,7 +6,7 @@
   };
 
   inputs = {
-    ht_proto.url = "github:hytech-racing/HT_proto/2025-04-29T00_26_22";
+    ht_proto.url = "github:hytech-racing/HT_proto/2025-05-07T00_27_37";
     ht_can.url = "github:hytech-racing/ht_can/159";
     hytech_data_acq.url = "github:hytech-racing/data_acq";
     hytech_data_acq.inputs.ht_can_pkg_flake.follows = "ht_can";
@@ -21,12 +21,14 @@
     nixpkgs.url = "github:NixOS/nixpkgs";
     nixpkgs.follows = "raspberry-pi-nix/nixpkgs";
 
-
+    
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-shell.url = "github:Mic92/nixos-shell";
   };
 
   outputs = { self, nixpkgs, hytech_data_acq, raspberry-pi-nix, nixos-generators, home-manager, hytech_params_server, aero_sensor_logger, drivebrain-software, ...}@inputs: rec {
@@ -54,6 +56,7 @@
       ./modules/shared_config/standard_settings.nix
       ./modules/shared_config/standard_services.nix
       ./modules/software_config/drivebrain_software.nix
+      # inputs.nixos-shell.nixosModules.nixos-shell
     ];
 
     tcu_config_modules = [
@@ -104,7 +107,7 @@
         ];
     };
 
-    support_vm_config = {
+    test-shell = {
       system = "x86_64-linux";
       specialArgs = { inherit self; };
       modules =
@@ -114,18 +117,14 @@
           (nixpkg_overlays)
           (
             { config, ... }: {
-              sdImage.compressImage = false;
-              services.data_writer.mcu-ip = "127.0.0.1";
-              services.data_writer.recv-ip = "127.0.0.1";
-              services.data_writer.send-to-mcu-port = 20001;
-              services.data_writer.recv-from-mcu-port = 20002;
-              service_names.url-name = ".car";
-              service_names.car-ip = "192.168.86.36";
-              service_names.dhcp-start = "192.168.86.37";
-              service_names.dhcp-end = "192.168.86.200";
-              service_names.default-gateway = "192.168.1.1";
-              service_names.dhcp-interfaces = [ "enp0s3" ];
               services.http_server.port = 8001;
+              drivebrain-service.enable = true;
+              simple_http_server.enable = true;
+              services.grpcui.enable = true;
+              hytech-nixos-environment.enable = true;
+              hytech-nixos-networking.enable = true;
+              standard-services.enable = true;
+              standard-settings.enable = true;
             }
           )
         ];
@@ -136,11 +135,11 @@
       overlays = nixpkg_overlays.nixpkgs.overlays;
 
     };
-    virtualbox_vm_modules = { modules = support_vm_config.modules ++ [ ./modules/vm_config/virtualbox_config.nix ]; };
-    cc_vm_modules = { modules = support_vm_config.modules ++ [ ./modules/vm_config/basic_vm_hw.nix ]; };
+    # virtualbox_vm_modules = { modules = support_vm_config.modules ++ [ ./modules/vm_config/virtualbox_config.nix ]; };
+    # cc_vm_modules = { modules = support_vm_config.modules ++ [ ./modules/vm_config/basic_vm_hw.nix ]; };
     # Use nixos-generate to create the VMs
-    nixosConfigurations.vbi = nixos-generators.nixosGenerate (support_vm_config // virtualbox_vm_modules // { format = "virtualbox"; });
-    nixosConfigurations.basic_vm = nixpkgs.lib.nixosSystem (support_vm_config // cc_vm_modules);
+    # nixosConfigurations.vbi = nixos-generators.nixosGenerate (support_vm_config // virtualbox_vm_modules // { format = "virtualbox"; });
+    nixosConfigurations.test-shell = nixpkgs.lib.nixosSystem (test-shell );
 
     images.tcu = nixosConfigurations.tcu.config.system.build.sdImage;
     tcu_top = nixosConfigurations.tcu.config.system.build.toplevel;

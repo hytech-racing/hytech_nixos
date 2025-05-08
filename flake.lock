@@ -583,16 +583,16 @@
         "nixpkgs": "nixpkgs_13"
       },
       "locked": {
-        "lastModified": 1745886368,
-        "narHash": "sha256-d1KpRJ9Ov3mE8zGBLZNkHrFvuoKCsb+Pn3DRovF2VvA=",
+        "lastModified": 1746577644,
+        "narHash": "sha256-a+Pb+I7T9a7c1OWR8GpxYH9yEyRqG/a3n/sZQ9uHbfU=",
         "owner": "hytech-racing",
         "repo": "HT_proto",
-        "rev": "b63b352f4a4d3d0e9b0cdb90f876ae12e812b4a7",
+        "rev": "b25248eadf992a0fdcfc53acbecdb512e06983c1",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "2025-04-29T00_26_22",
+        "ref": "2025-05-07T00_27_37",
         "repo": "HT_proto",
         "type": "github"
       }
@@ -1167,6 +1167,24 @@
         "type": "github"
       }
     },
+    "nixos-shell": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_23"
+      },
+      "locked": {
+        "lastModified": 1732727306,
+        "narHash": "sha256-4R+OVEmJ8yR7/gsxMQtC39b9f61SvELYQwKeXGAyFfo=",
+        "owner": "Mic92",
+        "repo": "nixos-shell",
+        "rev": "c61dce7cf5dc263d237ba8a7fc175b09642f96eb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "nixos-shell",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1702921762,
@@ -1457,6 +1475,21 @@
     },
     "nixpkgs_23": {
       "locked": {
+        "lastModified": 1628465643,
+        "narHash": "sha256-QSNw9bDq9uGUniQQtakRuw4m21Jxugm23SXLVgEV4DM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "6ef4f522d63f22b40004319778761040d3197390",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-unstable",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_24": {
+      "locked": {
         "lastModified": 1736061677,
         "narHash": "sha256-DjkQPnkAfd7eB522PwnkGhOMuT9QVCZspDpJJYyOj60=",
         "owner": "NixOS",
@@ -1587,7 +1620,7 @@
       "inputs": {
         "libcamera-src": "libcamera-src",
         "libpisp-src": "libpisp-src",
-        "nixpkgs": "nixpkgs_23",
+        "nixpkgs": "nixpkgs_24",
         "rpi-bluez-firmware-src": "rpi-bluez-firmware-src",
         "rpi-firmware-nonfree-src": "rpi-firmware-nonfree-src",
         "rpi-firmware-src": "rpi-firmware-src",
@@ -1621,6 +1654,7 @@
         "hytech_params_server": "hytech_params_server",
         "nix-proto": "nix-proto_6",
         "nixos-generators": "nixos-generators",
+        "nixos-shell": "nixos-shell",
         "nixpkgs": [
           "raspberry-pi-nix",
           "nixpkgs"
