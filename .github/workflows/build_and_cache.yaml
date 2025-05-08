@@ -3,7 +3,6 @@ name: build toplevel and push to cachix
 on: [push, pull_request]
 
 jobs:
-  jobs:
   build_and_push_toplevel:
     runs-on: ubuntu-24.04-arm
     steps:
