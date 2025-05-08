@@ -1,4 +1,7 @@
 { lib, pkgs, config, ... }:
+let
+  ipCmd = "${pkgs.iproute2}/bin/ip";
+in
 {
 
   options.tcu_config.enable = lib.mkOption {
@@ -33,12 +36,18 @@
       ];
     };
     networking.can.enable = true;
+
+
+    # services.udev.extraRules = ''ACTION=="add", SUBSYSTEM=="net", KERNEL=="can*", DRIVERS=="kvaser_usb", ATTRS{idVendor}=="0bfd", ATTRS{idProduct}=="0110", NAME="can2", RUN+="${ipCmd} link set can2 up type can bitrate 500000 && ${ipCmd} link set up can2"'';
     networking.can.interfaces = {
-      can0 = {
-        bitrate = 1000000; #
+      can0 = { # kvaser usb CAN
+        bitrate = 500000; #
       };
-      can1 = {
-        bitrate = 500000; # 
+      can1 = { # aux SPI CAN
+        bitrate = 500000; 
+      };
+      can2 = { # car / telem CAN
+        bitrate = 1000000; 
       };
     };
 
@@ -76,20 +85,20 @@
                   };
                 };
               };
-              # mcp2515-can1 = {
-              #   enable = true;
-              #   params = {
-              #     oscillator =
-              #       {
-              #         enable = true;
-              #         value = "16000000";
-              #       };
-              #     interrupt = {
-              #       enable = true;
-              #       value = "13"; # this is the individual gpio number for the interrupt of the spi boi
-              #     };
-              #   };
-              # };
+              mcp2515-can1 = {
+                enable = true;
+                params = {
+                  oscillator =
+                    {
+                      enable = true;
+                      value = "16000000";
+                    };
+                  interrupt = {
+                    enable = true;
+                    value = "13"; # this is the individual gpio number for the interrupt of the spi boi
+                  };
+                };
+              };
             };
           };
         };
