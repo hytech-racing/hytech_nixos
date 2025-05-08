@@ -1,10 +1,8 @@
 # contains the shared configuration for wifi, ssh and timesync daemon
 { lib, pkgs, config, ... }:
 with lib;
-let
-  cfg = config.service_names;
-in
-{
+let cfg = config.service_names;
+in {
   options.service_names = {
     url-name = mkOption {
       type = types.str;
@@ -27,15 +25,15 @@ in
       default = "192.168.1.200";
     };
     default-gateway = mkOption {
-        type = types.str;
-        default = "192.168.1.1";
-      };
+      type = types.str;
+      default = "192.168.1.1";
+    };
     dhcp-interfaces = mkOption {
       type = types.listOf types.str;
-      default = ["enp0s3" "test"];
+      default = [ "enp0s3" "test" ];
     };
   };
-  
+
   options.standard-services.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -55,37 +53,46 @@ in
         port = 22;
       }
     ];
+    networking.nameservers = [ "127.0.0.1" ];
+    services.resolved.enable = false;
+    services.dnsmasq = {
+      enable = true;
+      settings = {
+        domain-needed = true;
+        bogus-priv = true;
+        dhcp-authoritative = true;
 
-    # services.dnsmasq = {
-    #   enable = true;
-    #   settings = {
-    #     address = "/${cfg.url-name}/${cfg.car-ip}/";
-    #     domain-needed = true;
-    #     interface = cfg.dhcp-interfaces;
-    #     dhcp-authoritative = true;
-    #     dhcp-range = [ "eth,${cfg.dhcp-start},${cfg.dhcp-end},12h"];
-    #     dhcp-option = [ "option:router,${cfg.default-gateway}" "option:netmask,255.255.255.0" ];
-    #   };
-    # };
+        # Listen on all interfaces
+        interface =
+          "lo"; # default loopback to prevent dnsmasq from not starting
+        except-interface = "none"; # disables interface filtering
 
-    # services.nginx = {
-    #   enable = true;
-    #   recommendedProxySettings = true;
-    #   recommendedTlsSettings = true;
-    #   virtualHosts."files${cfg.url-name}" = {
-    #     locations."/".proxyPass = "http://127.0.0.1:8001";
-    #   };
-    #   virtualHosts."rec${cfg.url-name}" = {
-    #     locations."/".proxyPass = "http://127.0.0.1:6969";
-    #   };
-    #   virtualHosts."params${cfg.url-name}" = {
-    #     locations."/".proxyPass = "http://127.0.0.1:8000";
-    #   };
-    #   # virtualHosts."foxglove${cfg.url-name}" = {
-    #   #   locations."/".proxyPass = "http://127.0.0.1:8765";
-    #   #   locations."/".proxyWebsockets = true;
-    #   # };
-    # };
+        # Enable DHCP on all interfaces (listen-address 0.0.0.0 does this)
+        listen-address = [ "0.0.0.0" ];
+
+        dhcp-range = [
+          "interface:eth0,192.168.1.50,192.168.1.150,12h"
+          "interface:end0,192.168.1.50,192.168.1.150,12h"
+        ];
+
+        dhcp-option = [
+          "interface:eth0,option:router,192.168.1.30"
+          "interface:eth0,option:netmask,255.255.255.0"
+          "interface:end0,option:router,192.168.1.30"
+          "interface:end0,option:netmask,255.255.255.0"
+        ];
+
+        address = [ "/files.car/192.168.1.30" "/files-wifi.car/192.168.203.1" ];
+      };
+    };
+
+    services.nginx = {
+      enable = true;
+      virtualHosts."files.car" = {
+        locations."/".proxyPass = "http://127.0.0.1:8001";
+      };
+      
+    };
   };
 }
 

@@ -1,8 +1,8 @@
 {
   description = "Build image";
   nixConfig = {
-    extra-substituters = [ "https://nix-community.cachix.org" ];
-    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+    extra-substituters = [ "https://nix-community.cachix.org" "https://rcmast3r.cachix.org"];
+    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" "rcmast3r.cachix.org-1:dH22dF877RZ1j7uvAgqnQWNChxdQDeqgBRWpXzoi84c="];
   };
 
   inputs = {
@@ -56,7 +56,6 @@
       ./modules/shared_config/standard_settings.nix
       ./modules/shared_config/standard_services.nix
       ./modules/software_config/drivebrain_software.nix
-      # inputs.nixos-shell.nixosModules.nixos-shell
     ];
 
     tcu_config_modules = [
@@ -114,9 +113,30 @@
         shared_config_modules ++
         hytech_service_modules ++
         [
+          inputs.nixos-shell.nixosModules.nixos-shell
           (nixpkg_overlays)
           (
             { config, ... }: {
+              virtualisation.forwardPorts = [ 
+                { from = "host"; host.port = 2222; guest.port = 22; }
+                { from = "host"; host.port = 8001; guest.port = 8001; }
+                { from = "host"; host.port = 8000; guest.port = 80; }
+              ];
+              networking.interfaces.eth0.ipv4 = {
+              addresses = [
+                {
+                  address = "192.168.1.30"; # Your static IP address
+                  prefixLength = 24; # Netmask, 24 for 255.255.255.0
+                }
+              ];
+              routes = [
+                {
+                  address = "0.0.0.0";
+                  prefixLength = 0;
+                  via = "192.168.1.1"; # Your gateway IP address
+                }
+              ];
+            };
               services.http_server.port = 8001;
               drivebrain-service.enable = true;
               simple_http_server.enable = true;
@@ -144,5 +164,6 @@
     images.tcu = nixosConfigurations.tcu.config.system.build.sdImage;
     tcu_top = nixosConfigurations.tcu.config.system.build.toplevel;
     config_test = nixosConfigurations.tcu.config.hardware.raspberry-pi.config-output;
+    shell = nixosConfigurations.test-shell.config.system.build.nixos-shell;
   };
 }

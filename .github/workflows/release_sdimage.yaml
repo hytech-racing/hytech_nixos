@@ -1,0 +1,29 @@
+name: Release SDImage weekly
+
+on:
+  schedule:
+    - cron: '1 1 * * 1' # https://crontab.guru/#1_1_*_*_1 run weekly on monday
+
+jobs:
+  build_image_and_top_level:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: cachix/install-nix-action@v23
+
+      - name: Get current date and time
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H_%M_%S')"
+
+      - uses: actions/checkout@v4
+        with:
+          repository: hytech-racing/hytech_nixos
+          ref: refs/heads/master
+          
+      - run: nix build .#nixosConfigurations.tcu.config.system.build.sdImage --accept-flake-config
+      
+      - name: Release weekly sd image
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.date.outputs.date }}
+          files: |
+            ./result/sd-image/*.img.zst
