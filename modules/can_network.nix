@@ -23,6 +23,11 @@ in
             type = types.str;
             description = "The name of the CAN interface.";
           };
+          enable = mkOption {
+            type = types.boolean;
+            description = "enable CAN interface";
+            default = true;
+          };
           bitrate = mkOption {
             type = types.int;
             default = 500000;
@@ -42,7 +47,13 @@ in
       script = concatStringsSep "\n" (mapAttrsToList
         (name: iface: ''
           if ! ip link show ${name} | grep -q "UP"; then
-            ${ipCmd} link set ${name} type can bitrate ${toString iface.bitrate}
+            if [[ "${name}" =~ ^vcan[0-9]+$ ]]; then
+              echo "bringing up virtual CAN (vcan)"
+              ${ipCmd} link add dev ${name} type vcan
+            else
+              echo "bringing up physical CAN (can)"
+              ${ipCmd} link set ${name} type can bitrate ${toString iface.bitrate}
+            fi
             ${ipCmd} link set up ${name}
           else
             echo "CAN interface ${name} is already up."
