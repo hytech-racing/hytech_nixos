@@ -40,18 +40,37 @@ in
 
     # services.udev.extraRules = ''ACTION=="add", SUBSYSTEM=="net", KERNEL=="can*", DRIVERS=="kvaser_usb", ATTRS{idVendor}=="0bfd", ATTRS{idProduct}=="0110", NAME="can2", RUN+="${ipCmd} link set can2 up type can bitrate 500000 && ${ipCmd} link set up can2"'';
     networking.can.interfaces = {
-      can0 = { # kvaser usb CAN
+      can_kv = {
+        # kvaser usb CAN
         bitrate = 500000; #
       };
-      can1 = { # aux SPI CAN
-        bitrate = 500000; 
+      can_secondary = {
+        # aux SPI CAN
+        bitrate = 500000;
       };
-      can2 = { # car / telem CAN
-        bitrate = 1000000; 
+      can_primary = {
+        # car / telem CAN
+        bitrate = 1000000;
       };
     };
 
-    hardware = {  
+    systemd.network.links = {
+        "10-ht09-can-primary" = {
+          matchConfig = { Path = "platform-1f00050000.spi-cs-0"; };
+          linkConfig.Name = "can_primary";
+        };
+
+        "10-ht09-can-secondary" = {
+          matchConfig = { Path = "platform-1f00050000.spi-cs-1"; };
+          linkConfig.Name = "can_secondary";
+        };
+        "10-ht09-can-kv" = {
+          matchConfig = { Property = "ID_MODEL=Kvaser_U100"; };
+          linkConfig.Name = "can_kv"; # kvaser CAN
+        };
+      };
+
+    hardware = {
       raspberry-pi = {
         config = {
           all = {
@@ -65,8 +84,8 @@ in
                 value = "on";
               };
               i2c = {
-                enable =true;
-                value="off";
+                enable = true;
+                value = "off";
               };
             };
 
