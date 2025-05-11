@@ -52,10 +52,6 @@ in {
         addr = ":";
         port = 22;
       }
-      {
-        addr = "127.0.0.1";
-        port = 22;
-      }
     ];
     # networking.nameservers = [ "127.0.0.1" ];
     # services.resolved.enable = false;

@@ -6,8 +6,8 @@
   };
 
   inputs = {
-    ht_proto.url = "github:hytech-racing/HT_proto/2025-05-07T00_27_37";
-    ht_can.url = "github:hytech-racing/ht_can/159";
+    ht_proto.url = "github:hytech-racing/HT_proto/2025-05-09T15_45_17";
+    ht_can.url = "github:hytech-racing/ht_can/160";
     drivebrain-software.url = "github:hytech-racing/drivebrain_software/dev/v1.1.0";
     drivebrain-software.inputs.ht_can.follows = "ht_can";
     drivebrain-software.inputs.HT_proto.follows = "ht_proto";
@@ -56,9 +56,9 @@
       ./modules/software_config/drivebrain_software.nix
     ];
 
-    tcu_config_modules = [
+    hw_config_modules = [
       ./modules/linux_router.nix
-      ./modules/hardware_config/tcu_config.nix
+      ./modules/hardware_config/hw_config.nix
     ];
 
     hytech_service_modules = [
@@ -72,7 +72,7 @@
 
       specialArgs = { inherit self; };
       modules =
-        tcu_config_modules ++
+        hw_config_modules ++
         hytech_service_modules ++
         shared_config_modules ++ [
           (nixpkg_overlays)
