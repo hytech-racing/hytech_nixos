@@ -18,7 +18,7 @@ in
 
       serviceConfig = {
         After = [ "network.target" ];
-        ExecStart = "${pkgs.drivebrain_software}/bin/alpha_build -p /home/nixos/config/drivebrain_config.json -d ${pkgs.ht_can_pkg}/hytech.dbc";
+        ExecStart = "${pkgs.drivebrain_software}/bin/drivebrain_exe -p /home/nixos/config/drivebrain_config.json -d ${pkgs.ht_can_pkg}/hytech.dbc";
         ExecStop = "/bin/kill -9 $MAINPID";
         Restart = "on-failure";
       };
@@ -54,7 +54,7 @@ in
     system.activationScripts.writeDebugDBLaunchScript = pkgs.lib.mkForce ''
       if [ ! -f "/home/nixos/launch.sh" ]; then
         echo "#!/run/current-system/sw/bin/bash" > "/home/nixos/launch.sh\n"
-        echo "${pkgs.drivebrain_software}/bin/alpha_build -p /home/nixos/config/drivebrain_config.json -d ${pkgs.ht_can_pkg}/hytech.dbc" > "/home/nixos/launch.sh"
+        echo "${pkgs.drivebrain_software}/bin/drivebrain_exe -p /home/nixos/config/drivebrain_config.json -d ${pkgs.ht_can_pkg}/hytech.dbc" > "/home/nixos/launch.sh"
         chown nixos:users /home/nixos/launch.sh
         chmod +x /home/nixos/launch.sh
       fi
