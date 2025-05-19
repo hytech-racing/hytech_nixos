@@ -104,11 +104,19 @@
         "vn_driver_lib": "vn_driver_lib"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1747691817,
         "narHash": "sha256-xAAmKIkRuMUk+J4PTCqY8+e9Fl3jMfxz5cnZX1NT/f0=",
         "owner": "hytech-racing",
         "repo": "drivebrain_software",
         "rev": "1e169f7f1e43442322ecc2f75bd6215be14ca365",
+=======
+        "lastModified": 1747003903,
+        "narHash": "sha256-o8u1OknYNb2s/iyxKkTfauXTVu0dQMUa2KtJy/w8JUk=",
+        "owner": "hytech-racing",
+        "repo": "drivebrain_software",
+        "rev": "1edc0cbcd41310f697ec36f536218d3b0c50b47d",
+>>>>>>> 7fef198961c2d68111dd1b6135d5efdcd1ff8307
         "type": "github"
       },
       "original": {
