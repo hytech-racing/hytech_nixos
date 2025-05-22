@@ -7,7 +7,7 @@
 
   inputs = {
     ht_proto.url = "github:hytech-racing/HT_proto/2025-05-14T04_28_50";
-    ht_can.url = "github:hytech-racing/ht_can/160";
+    ht_can.url = "github:hytech-racing/ht_can/159";
     drivebrain-software.url = "github:hytech-racing/drivebrain_software/dev/v1.1.0";
     drivebrain-software.inputs.ht_can.follows = "ht_can";
     drivebrain-software.inputs.HT_proto.follows = "ht_proto";
