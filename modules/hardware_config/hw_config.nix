@@ -40,10 +40,10 @@ in
 
     # services.udev.extraRules = ''ACTION=="add", SUBSYSTEM=="net", KERNEL=="can*", DRIVERS=="kvaser_usb", ATTRS{idVendor}=="0bfd", ATTRS{idProduct}=="0110", NAME="can2", RUN+="${ipCmd} link set can2 up type can bitrate 500000 && ${ipCmd} link set up can2"'';
     networking.can.interfaces = {
-      can_kv = {
-        # kvaser usb CAN
-        bitrate = 500000; #
-      };
+      # can_kv = {
+      #   # kvaser usb CAN
+      #   bitrate = 500000; #
+      # };
       can_secondary = {
         # aux SPI CAN
         bitrate = 500000;
@@ -64,10 +64,10 @@ in
           matchConfig = { Path = "platform-1f00050000.spi-cs-1"; };
           linkConfig.Name = "can_secondary";
         };
-        "10-ht09-can-kv" = {
-          matchConfig = { Property = "ID_MODEL=Kvaser_U100"; };
-          linkConfig.Name = "can_kv"; # kvaser CAN
-        };
+        # "10-ht09-can-kv" = {
+        #   matchConfig = { Property = "ID_MODEL=Kvaser_U100"; };
+        #   linkConfig.Name = "can_kv"; # kvaser CAN
+        # };
       };
 
     hardware = {

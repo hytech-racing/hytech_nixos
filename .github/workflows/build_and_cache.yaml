@@ -13,4 +13,4 @@ jobs:
           name: rcmast3r
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
       - run: nix build .#nixosConfigurations.tcu.config.system.build.toplevel --accept-flake-config
-      - run: nix-store -qR --include-outputs $(nix-store -qd $(./result)) | grep -v '\.drv$' | cachix push rcmast3r
+      - run: nix flake archive --json | jq -r '.path,(.inputs|to_entries[].value.path)' | cachix push rcmast3r
