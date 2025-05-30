@@ -35,11 +35,11 @@
     "db-core-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1748325434,
-        "narHash": "sha256-g2iPS4Q/DjUdFAAkzu/YpFYQbts8ofd9FV7zvQ0jm0k=",
+        "lastModified": 1748400693,
+        "narHash": "sha256-8mJWCZgaSPEiPHPT/k1T2kyVeLf7u3TxVjhyvJOpTvs=",
         "owner": "hytech-racing",
         "repo": "drivebrain_core",
-        "rev": "971d4d04d87d79ab5bd4ed1640bd08d1f5c4ba06",
+        "rev": "e565c5c2fba93d3f181a77c2ab8eeadffffd99b1",
         "type": "github"
       },
       "original": {
@@ -51,14 +51,14 @@
     "db-simulink-gen-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1748234195,
-        "narHash": "sha256-8fdga92a1+mPoLqrAf++Uy3p0lp893X17vBQmletyPg=",
+        "lastModified": 1748574232,
+        "narHash": "sha256-8Y5DPY/YN7XNZDxEta2JJFy/aDtVul6ezbZMZp2cH+M=",
         "type": "tarball",
-        "url": "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/test-rel2/gen_rel.tar.gz"
+        "url": "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/test-rel3/gen_rel.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/test-rel2/gen_rel.tar.gz"
+        "url": "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/test-rel3/gen_rel.tar.gz"
       }
     },
     "dbcppp-src": {
@@ -120,16 +120,16 @@
         "vn_driver_lib": "vn_driver_lib"
       },
       "locked": {
-        "lastModified": 1748326298,
-        "narHash": "sha256-EMgfK2SZgyIVWJXJ9F4GoqeC8zd1qvqWhlsVOaO65QU=",
+        "lastModified": 1748460293,
+        "narHash": "sha256-v1jMPhVXZvctSEIOu3WbP5ytipykV9htFl9thix1/NM=",
         "owner": "hytech-racing",
         "repo": "drivebrain_software",
-        "rev": "5590426d6a4944e4d41e421423af4c3ea76ff8ee",
+        "rev": "58ad863aa61631d175dd7381836d5bb51efa965c",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "feature/mm_gend_estimator_integration",
+        "ref": "dev/v1.1.0",
         "repo": "drivebrain_software",
         "type": "github"
       }

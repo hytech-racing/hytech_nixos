@@ -56,3 +56,8 @@ zstdcat <file.img.zst in result/> | sudo dd of=/dev/sd<change-me-pls> bs=4M stat
 
 every week a new SD image is created as a release artifact from this repo from the master branch. use the command above to image the pi's sd card.
 
+## to get the current nixos version on the car for simple rollback to prev;
+
+```
+nix path-info /run/current-system
+```
