@@ -35,11 +35,11 @@
     "db-core-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1748400693,
-        "narHash": "sha256-8mJWCZgaSPEiPHPT/k1T2kyVeLf7u3TxVjhyvJOpTvs=",
+        "lastModified": 1748639958,
+        "narHash": "sha256-qRfdJxKy/O1L2pkGX3Xe78m+K/pLNBQFk6s5HvK6YVI=",
         "owner": "hytech-racing",
         "repo": "drivebrain_core",
-        "rev": "e565c5c2fba93d3f181a77c2ab8eeadffffd99b1",
+        "rev": "a3faebc4b772dd26314697d43f4409bf4f5c3e1d",
         "type": "github"
       },
       "original": {
@@ -51,8 +51,8 @@
     "db-simulink-gen-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1748574232,
-        "narHash": "sha256-8Y5DPY/YN7XNZDxEta2JJFy/aDtVul6ezbZMZp2cH+M=",
+        "lastModified": 1748727135,
+        "narHash": "sha256-hrF5gHiEFE32yxSv9Fm1F8PiBFh0TnBjc51FX7/Qfvc=",
         "type": "tarball",
         "url": "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/test-rel3/gen_rel.tar.gz"
       },
@@ -120,11 +120,11 @@
         "vn_driver_lib": "vn_driver_lib"
       },
       "locked": {
-        "lastModified": 1748460293,
-        "narHash": "sha256-v1jMPhVXZvctSEIOu3WbP5ytipykV9htFl9thix1/NM=",
+        "lastModified": 1748652414,
+        "narHash": "sha256-Tcf2EirMVIauNm2vdzQinWkAymXU6seLQuMIC2ZMRYg=",
         "owner": "hytech-racing",
         "repo": "drivebrain_software",
-        "rev": "58ad863aa61631d175dd7381836d5bb51efa965c",
+        "rev": "1dba68bb21b285458c791ba7aba6423ca267e7b4",
         "type": "github"
       },
       "original": {
@@ -427,16 +427,16 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1748325502,
-        "narHash": "sha256-coKQEqVAb27VqvGnL8PqcAWzq/2wk62fwozUzl5Oq3Y=",
+        "lastModified": 1748639873,
+        "narHash": "sha256-7KC4DEH/hqrnjRaOEXqvvQJdyBjUFjTGFYM2HVflrYk=",
         "owner": "hytech-racing",
         "repo": "HT_proto",
-        "rev": "dd7a4c4f45ce74c05c40a9bcc66e221cceb2835b",
+        "rev": "98d4b72640844f87ae2d2cef88a13bb6acd8226f",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "2025-05-27T05_58_38",
+        "ref": "2025-05-30T21_18_06",
         "repo": "HT_proto",
         "type": "github"
       }
