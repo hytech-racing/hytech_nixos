@@ -100,7 +100,7 @@ in
                     };
                   interrupt = {
                     enable = true;
-                    value = "22"; # this is the individual gpio number for the interrupt of the spi boi
+                    value = "0"; # this is the individual gpio number for the interrupt of the spi boi
                   };
                 };
               };
@@ -114,7 +114,7 @@ in
                     };
                   interrupt = {
                     enable = true;
-                    value = "13"; # this is the individual gpio number for the interrupt of the spi boi
+                    value = "6"; # this is the individual gpio number for the interrupt of the spi boi
                   };
                 };
               };

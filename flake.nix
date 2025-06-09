@@ -13,7 +13,7 @@
       flake = false;
     };
     
-    drivebrain-software.url = "github:hytech-racing/drivebrain_software/dev/v1.1.0";
+    drivebrain-software.url = "github:hytech-racing/drivebrain_software/revert/broke_config_logging";
     drivebrain-software.inputs.ht_can.follows = "ht_can";
     drivebrain-software.inputs.HT_proto.follows = "ht_proto";
     drivebrain-software.inputs.db-simulink-gen-src.follows = "db-simulink-gen-src";
