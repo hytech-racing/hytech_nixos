@@ -16,10 +16,7 @@
       pkgs.libraspberrypi
       pkgs.can-utils
       pkgs.ethtool
-      pkgs.python3
-      pkgs.nodePackages.serve
       pkgs.getconf
-      pkgs.python311Packages.cantools
       pkgs.ht_can_pkg
       pkgs.htop
       pkgs.simple-http-server
@@ -28,7 +25,7 @@
       pkgs.tmux
       pkgs.ser2net
       pkgs.i2c-tools
-      (pkgs.python3.withPackages (ps: with ps; [ numpy pandas smbus2 i2c-tools ]))
+      (pkgs.python312.withPackages (ps: with ps; [ numpy pandas smbus2 i2c-tools cantools python-can ]))
     ];
   };
 }

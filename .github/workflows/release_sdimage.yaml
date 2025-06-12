@@ -1,9 +1,10 @@
 name: Release SDImage weekly
 
 on:
-  schedule:
-    - cron: '1 1 * * 1' # https://crontab.guru/#1_1_*_*_1 run weekly on monday
-  
+  # schedule:
+  #   - cron: '1 1 * * 1' # https://crontab.guru/#1_1_*_*_1 run weekly on monday
+  push:
+  pull_request:
   workflow_dispatch:
 
 jobs:

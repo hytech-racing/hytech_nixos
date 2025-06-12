@@ -52,6 +52,7 @@ in
               ${ipCmd} link add dev ${name} type vcan
             else
               echo "bringing up physical CAN (can)"
+              ${ipCmd} link set ${name} txqueuelen 1000
               ${ipCmd} link set ${name} type can bitrate ${toString iface.bitrate}
             fi
             ${ipCmd} link set up ${name}
