@@ -46,7 +46,7 @@ in
       # };
       can_secondary = {
         # aux SPI CAN
-        bitrate = 500000;
+        bitrate = 1000000;
       };
       can_primary = {
         # car / telem CAN
@@ -90,7 +90,7 @@ in
             };
 
             dt-overlays = {
-              mcp2515-can0 = {
+              mcp2515-can0 = { # can primary
                 enable = true;
                 params = {
                   oscillator =

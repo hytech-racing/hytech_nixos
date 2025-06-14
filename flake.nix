@@ -7,7 +7,7 @@
 
   inputs = {
     ht_proto.url = "github:hytech-racing/HT_proto/2025-06-14T04_41_35";
-    ht_can.url = "github:hytech-racing/ht_can/176";
+    ht_can.url = "github:hytech-racing/ht_can/177";
     db-simulink-gen-src = {
       url = "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel7/gen_rel.tar.gz";
       flake = false;
