@@ -6,10 +6,10 @@
   };
 
   inputs = {
-    ht_proto.url = "github:hytech-racing/HT_proto/2025-05-30T21_18_06";
-    ht_can.url = "github:hytech-racing/ht_can/174";
+    ht_proto.url = "github:hytech-racing/HT_proto/2025-06-14T04_41_35";
+    ht_can.url = "github:hytech-racing/ht_can/176";
     db-simulink-gen-src = {
-      url = "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel6/gen_rel.tar.gz";
+      url = "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel7/gen_rel.tar.gz";
       flake = false;
     };
     
