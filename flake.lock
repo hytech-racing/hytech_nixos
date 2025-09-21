@@ -51,14 +51,14 @@
     "db-simulink-gen-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1749914780,
-        "narHash": "sha256-u4CDvtmDn1D7VfoD/QITc7BI3leZFZDcsbVsbxsxrdo=",
+        "lastModified": 1757552658,
+        "narHash": "sha256-Z/NQFLnag40TNSacho7z187fqMkIhImSZltusTuXn3w=",
         "type": "tarball",
-        "url": "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel7/gen_rel.tar.gz"
+        "url": "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel13-2/gen_rel.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel7/gen_rel.tar.gz"
+        "url": "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel13-2/gen_rel.tar.gz"
       }
     },
     "dbcppp-src": {
@@ -407,16 +407,16 @@
         "utils": "utils_4"
       },
       "locked": {
-        "lastModified": 1749929163,
-        "narHash": "sha256-3AHPG358MknD+G/IQKO+0NaK+HKR/27b3roBoKmfQZM=",
+        "lastModified": 1750250981,
+        "narHash": "sha256-+qgDweOcLF2ga70jOBXWsoxYsyKd8xP51FK7UdPBvwQ=",
         "owner": "hytech-racing",
         "repo": "ht_can",
-        "rev": "19b26f1f6c2d06207023a80cc537bd3de1ed4d6c",
+        "rev": "a641eef22d37c97563fd72ec928e48888066a50f",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "177",
+        "ref": "179",
         "repo": "ht_can",
         "type": "github"
       }
@@ -815,6 +815,22 @@
       },
       "original": {
         "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "cbd8ec4de4469333c82ff40d057350c30e9f7d36",
+        "type": "github"
+      }
+    },
+    "nixpkgs_13": {
+      "locked": {
+        "lastModified": 1736061677,
+        "narHash": "sha256-DjkQPnkAfd7eB522PwnkGhOMuT9QVCZspDpJJYyOj60=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "cbd8ec4de4469333c82ff40d057350c30e9f7d36",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
         "ref": "nixos-24.11",
         "repo": "nixpkgs",
         "type": "github"
@@ -952,7 +968,7 @@
       "inputs": {
         "libcamera-src": "libcamera-src",
         "libpisp-src": "libpisp-src",
-        "nixpkgs": "nixpkgs_12",
+        "nixpkgs": "nixpkgs_13",
         "rpi-bluez-firmware-src": "rpi-bluez-firmware-src",
         "rpi-firmware-nonfree-src": "rpi-firmware-nonfree-src",
         "rpi-firmware-src": "rpi-firmware-src",
@@ -985,10 +1001,7 @@
         "nix-proto": "nix-proto_3",
         "nixos-generators": "nixos-generators",
         "nixos-shell": "nixos-shell",
-        "nixpkgs": [
-          "raspberry-pi-nix",
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_12",
         "raspberry-pi-nix": "raspberry-pi-nix"
       }
     },

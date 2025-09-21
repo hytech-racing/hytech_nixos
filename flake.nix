@@ -5,11 +5,11 @@
     extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" "rcmast3r.cachix.org-1:dH22dF877RZ1j7uvAgqnQWNChxdQDeqgBRWpXzoi84c=" ];
   };
 
-  inputs = {
+  inputs = rec {
     ht_proto.url = "github:hytech-racing/HT_proto/2025-06-14T04_41_35";
-    ht_can.url = "github:hytech-racing/ht_can/177";
+    ht_can.url = "github:hytech-racing/ht_can/179";
     db-simulink-gen-src = {
-      url = "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel7/gen_rel.tar.gz";
+      url = "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel13-2/gen_rel.tar.gz";
       flake = false;
     };
     
@@ -21,8 +21,8 @@
     drivebrain-software.inputs.nix-proto.follows = "nix-proto";
 
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
-    nixpkgs.url = "github:NixOS/nixpkgs";
-    nixpkgs.follows = "raspberry-pi-nix/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/cbd8ec4de4469333c82ff40d057350c30e9f7d36";
+    # nixpkgs.follows = "raspberry-pi-nix/nixpkgs";
 
 
     home-manager.url = "github:nix-community/home-manager/release-23.11";

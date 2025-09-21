@@ -46,10 +46,10 @@ in
       # };
       can_secondary = {
         # aux SPI CAN
-        bitrate = 1000000;
+        bitrate = 500000;
       };
       can_primary = {
-        # car / telem CAN
+        # car / telem CANnix build .#nixosConfigurations.tcu.config.system.build.toplevel
         bitrate = 1000000;
       };
     };
