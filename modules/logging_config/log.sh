@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# TODO: idk what the channel names are
 CHANNELS=(can_primary can_secondary)
 declare -A PIDS
 CURR_MP=""
-
-timestamp() {
-  awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush(); }'
-}
 
 wait_for_mount() {
   local devnode="$1" mp=""
@@ -24,11 +19,8 @@ init_dump() {
   for ch in "${CHANNELS[@]}"; do
     local dir="$CURR_MP/$ch"
     mkdir -p "$dir"
-    local file="$dir/$(date +"%Y-%m-%d_%H-%M-%S.log")"
     echo "[can-log] starting candump on $ch into $dir/"
-    # (candump -l "$ch" | timestamp>"$dir/")
-
-    ( yes "$ch dummy log line" | timestamp>"$file" ) &
+    (candump -tal "$ch" > "$dir/")
     PIDS[$ch]=$!
   done
 }
