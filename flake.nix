@@ -101,7 +101,7 @@
               standard-services.enable = true;
               standard-settings.enable = true;
               linux_router.enable = true;
-	      logging-service.enable = true;	
+              logging-service.enable = true;	
 
               raspberry-pi-nix.libcamera-overlay.enable = false;
               raspberry-pi-nix.board = "bcm2712";
