@@ -69,6 +69,21 @@ in
         #   linkConfig.Name = "can_kv"; # kvaser CAN
         # };
       };
+    
+    fileSystems."/mnt/can_logs" = {
+      device = "UUID=6CEC-5AC8";
+      fsType = "exfat";
+      options = [
+        "nofail"
+        "x-systemd.automount"
+        "x-systemd.device-timeout=10"
+        "sync"
+        "uid=1000"
+        "gid=1000"
+      ];
+    };
+
+
 
     hardware = {
       raspberry-pi = {
