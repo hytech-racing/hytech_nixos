@@ -71,6 +71,7 @@
       ./modules/can_network.nix
       ./modules/simple_http_server.nix
       ./modules/grpcui.nix
+      ./modules/logging_config/logging.nix
     ];
 
     nixosConfigurations.tcu = nixpkgs.lib.nixosSystem {
@@ -100,6 +101,7 @@
               standard-services.enable = true;
               standard-settings.enable = true;
               linux_router.enable = true;
+              logging-service.enable = true;	
 
               raspberry-pi-nix.libcamera-overlay.enable = false;
               raspberry-pi-nix.board = "bcm2712";
