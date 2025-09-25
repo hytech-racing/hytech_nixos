@@ -33,6 +33,7 @@ dump() {
 
 main() {
   mkdir -p "$LOG_DIR"
+  ls "$LOG_DIR"
 
   for ch in "${CHANNELS[@]}"; do
     dump "$ch"
