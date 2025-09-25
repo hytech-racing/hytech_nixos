@@ -16,12 +16,24 @@ wait_for_mount() {
 
 init_dump() {
   CURR_MP="$1"
+
   for ch in "${CHANNELS[@]}"; do
-    local dir="$CURR_MP/$ch"
-    mkdir -p "$dir"
-    echo "[can-log] starting candump on $ch into $dir/"
-    (candump -tal "$ch" > "$dir/")
-    PIDS[$ch]=$!
+    (
+      dir="$CURR_MP/$ch"
+      mkdir -p "$dir"
+
+      ts="$(date -u +'%Y-%m-%dT%H-%M-%SZ')"
+      logfile="$dir/${ts}_${ch}.log"
+
+      : > "$logfile"
+
+      echo "[can-log] starting candump on $ch into $logfile"
+
+      cd "$dir" || exit 1
+      exec candump -tal "$ch" >>"$logfile" 2>&1
+    ) &
+
+    PIDS["$ch"]=$!
   done
 }
 
