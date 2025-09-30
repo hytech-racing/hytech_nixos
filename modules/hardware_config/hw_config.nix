@@ -69,6 +69,8 @@ in
         #   linkConfig.Name = "can_kv"; # kvaser CAN
         # };
       };
+
+    # CAN Logging USB Destination
     
     fileSystems."/mnt/can_logs" = {
       device = "UUID=6CEC-5AC8";
