@@ -24,6 +24,7 @@
         RestartSec = 2;
         StandardOutput = "journal";
         StandardError = "journal";
+        Environment = "PATH=${lib.makeBinPath [ pkgs.bash pkgs.can-utils pkgs.coreutils pkgs.gnugrep ]}";
       };
     };
   };
