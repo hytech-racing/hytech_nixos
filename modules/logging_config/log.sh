@@ -25,14 +25,18 @@ dump() {
 
     echo "[can-log] starting candump on $ch into $logfile"
 
-    while true; do
-      if candump -L "$ch" >/dev/null 2>&1; then
-        exec stdbuf -oL -eL candump -t a "$ch" >>"$logfile" 2>&1
-      else
-        echo "[can-log] $ch not up, retrying in 2s.."
-        sleep 2
-      fi
-    done
+
+  while true; do
+    if ip link show "$ch" >/dev/null 2>&1; then
+      echo "[can-log] interface $ch is up, starting candump..."
+      stdbuf -oL -eL candump -t a "$ch" >>"$logfile" 2>&1 || true
+      echo "[can-log] candump for $ch exited, restarting in 2s..."
+    else
+      echo "[can-log] interface $ch not up, retrying in 2s..."
+    fi
+    sleep 2
+  done
+
   ) &
   pids+=("$!")
 }
