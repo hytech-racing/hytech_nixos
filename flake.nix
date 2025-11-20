@@ -13,7 +13,7 @@
       flake = false;
     };
     
-    drivebrain-software.url = "github:hytech-racing/drivebrain_software/erm";
+    drivebrain-software.url = "github:hytech-racing/drivebrain_software/main";
     drivebrain-software.inputs.ht_can.follows = "ht_can";
     drivebrain-software.inputs.HT_proto.follows = "ht_proto";
     drivebrain-software.inputs.db-simulink-gen-src.follows = "db-simulink-gen-src";
