@@ -7,13 +7,13 @@
 
   inputs = rec {
     ht_proto.url = "github:hytech-racing/HT_proto/2025-06-14T04_41_35";
-    ht_can.url = "github:hytech-racing/ht_can/193";
+    ht_can.url = "github:hytech-racing/ht_can/198";
     db-simulink-gen-src = {
       url = "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel19/gen_rel.tar.gz";
       flake = false;
     };
     
-    drivebrain-software.url = "github:hytech-racing/drivebrain_software/erm";
+    drivebrain-software.url = "github:hytech-racing/drivebrain_software";
     drivebrain-software.inputs.ht_can.follows = "ht_can";
     drivebrain-software.inputs.HT_proto.follows = "ht_proto";
     drivebrain-software.inputs.db-simulink-gen-src.follows = "db-simulink-gen-src";

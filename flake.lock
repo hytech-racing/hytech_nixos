@@ -35,30 +35,31 @@
     "db-core-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1749880473,
-        "narHash": "sha256-OCbbt3Mt7E96bqQ/uyg3yno79ooLr6vXo+bkD9Z+us8=",
+        "lastModified": 1758502923,
+        "narHash": "sha256-3ksARaACWlhcLA84P0zBt7LDZM0sbhOpJACGEjM036w=",
         "owner": "hytech-racing",
         "repo": "drivebrain_core",
-        "rev": "40f2c209639924b9ecee2bcf3492564d49479939",
+        "rev": "456fb8eec9143d2bb10d26369737e000cae2d63d",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
         "repo": "drivebrain_core",
+        "rev": "456fb8eec9143d2bb10d26369737e000cae2d63d",
         "type": "github"
       }
     },
     "db-simulink-gen-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1758428874,
-        "narHash": "sha256-vYLb9DKHsdids5JuVgkOxmQ0WgNcUcUxxt2y++uthAg=",
+        "lastModified": 1758601572,
+        "narHash": "sha256-/mEZBzmy1SI+bEtT0iTFkMaya8Hyi3JTbodb7HvG2P4=",
         "type": "tarball",
-        "url": "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel14/gen_rel.tar.gz"
+        "url": "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel19/gen_rel.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel14/gen_rel.tar.gz"
+        "url": "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel19/gen_rel.tar.gz"
       }
     },
     "dbcppp-src": {
@@ -120,16 +121,15 @@
         "vn_driver_lib": "vn_driver_lib"
       },
       "locked": {
-        "lastModified": 1749918046,
-        "narHash": "sha256-wnpMadXJW2Cr7trvNrdr6Ib6IqiwMSpE3Be4KYxCEy4=",
+        "lastModified": 1761116875,
+        "narHash": "sha256-sy4iAwzw/Uw/anPpFi3mUitDIkje2Nfg0k05Letd4FI=",
         "owner": "hytech-racing",
         "repo": "drivebrain_software",
-        "rev": "aaf09fd890a865ce048f4f978c21ee4e1e651ffb",
+        "rev": "9cbcfd04e561b033da4f295be5aa622baf76b5db",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "dev/v1.1.0",
         "repo": "drivebrain_software",
         "type": "github"
       }
@@ -407,16 +407,16 @@
         "utils": "utils_4"
       },
       "locked": {
-        "lastModified": 1750250981,
-        "narHash": "sha256-+qgDweOcLF2ga70jOBXWsoxYsyKd8xP51FK7UdPBvwQ=",
+        "lastModified": 1761865480,
+        "narHash": "sha256-/AnC2HWk+SQACk7JHLWJcD7H0EbmVBvRwtD52XvELOE=",
         "owner": "hytech-racing",
         "repo": "ht_can",
-        "rev": "a641eef22d37c97563fd72ec928e48888066a50f",
+        "rev": "b42df8fc2250f832588d81fd3d790d0516b7d3d9",
         "type": "github"
       },
       "original": {
         "owner": "hytech-racing",
-        "ref": "179",
+        "ref": "198",
         "repo": "ht_can",
         "type": "github"
       }
