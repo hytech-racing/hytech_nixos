@@ -19,6 +19,9 @@
     users.groups.nixos = { };
     users.users.nixos.extraGroups = [ "wheel" "dialout" ];
 
+    time.timeZone = "America/New_York";
+    services.timesyncd.enable = true;
+
     users.users.nixos.isNormalUser = true;
     system.stateVersion = "23.11";
     system.activationScripts.createRecordingsDir = lib.stringAfter [ "users" ] ''

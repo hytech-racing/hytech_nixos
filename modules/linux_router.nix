@@ -25,7 +25,7 @@ in {
     };
     hotspot-name = mkOption {
       type = types.str;
-      default = "ht09";
+      default = "htx";
     };
 
   };
