@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, drivebrain_software_src, ... }: 
 let
   jsonContent = builtins.readFile ./config/drivebrain_config.json;
 in
@@ -11,6 +11,18 @@ in
 
   config = lib.mkIf config.drivebrain-service.enable {
 
+    system.activationScripts.installDrivebrainDefault = lib.stringAfter [ "users" ] ''
+      mkdir -p /opt/drivebrain
+      chown nixos:users /opt/drivebrain
+      chmod 0755 /opt/drivebrain
+
+      if [ ! -f /opt/drivebrain/drivebrain ]; then
+        install -m 0755 -o nixos -g users \
+          ${drivebrain_software_src}/drivebrain \
+          /opt/drivebrain/drivebrain
+      fi
+    '';
+
     systemd.services.drivebrain-service = {
       description = "Drivebrain Service";
       wantedBy = [ "multi-user.target" ];
@@ -18,7 +30,7 @@ in
 
       serviceConfig = {
         After = [ "network.target" ];
-        ExecStart = "${pkgs.drivebrain_software}/bin/drivebrain_exe -p /home/nixos/config/drivebrain_config.json -d ${pkgs.ht_can_pkg}/hytech.dbc -c true";
+        ExecStart = "/opt/drivebrain/drivebrain -c /home/nixos/config/drivebrain_config.json -d /home/nixos/config/hytech.dbc";
         ExecStop = "/bin/kill -9 $MAINPID";
         Restart = "on-failure";
       };
@@ -54,7 +66,7 @@ in
     system.activationScripts.writeDebugDBLaunchScript = pkgs.lib.mkForce ''
       if [ ! -f "/home/nixos/launch.sh" ]; then
         echo "#!/run/current-system/sw/bin/bash" > "/home/nixos/launch.sh\n"
-        echo "${pkgs.drivebrain_software}/bin/drivebrain_exe -p /home/nixos/config/drivebrain_config.json -d ${pkgs.ht_can_pkg}/hytech.dbc" > "/home/nixos/launch.sh"
+        echo "/opt/drivebrain/drivebrain -c /home/nixos/config/drivebrain_config.json -d hytech.dbc" > "/home/nixos/launch.sh"
         chown nixos:users /home/nixos/launch.sh
         chmod +x /home/nixos/launch.sh
       fi

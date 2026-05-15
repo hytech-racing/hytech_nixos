@@ -55,16 +55,16 @@ in
     };
 
     systemd.network.links = {
-        "10-ht09-can-primary" = {
+        "10-htx-can-primary" = {
           matchConfig = { Path = "platform-1f00050000.spi-cs-0"; };
           linkConfig.Name = "can_primary";
         };
 
-        "10-ht09-can-secondary" = {
+        "10-htx-can-secondary" = {
           matchConfig = { Path = "platform-1f00050000.spi-cs-1"; };
           linkConfig.Name = "can_secondary";
         };
-        # "10-ht09-can-kv" = {
+        # "10-htx-can-kv" = {
         #   matchConfig = { Property = "ID_MODEL=Kvaser_U100"; };
         #   linkConfig.Name = "can_kv"; # kvaser CAN
         # };
@@ -114,7 +114,7 @@ in
                     };
                   interrupt = {
                     enable = true;
-                    value = "25"; # this is the individual gpio number for the interrupt of the spi boi
+                    value = "13"; # this is the individual gpio number for the interrupt of the spi boi
                   };
                 };
               };

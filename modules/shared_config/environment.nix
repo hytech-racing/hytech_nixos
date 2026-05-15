@@ -17,7 +17,6 @@
       pkgs.can-utils
       pkgs.ethtool
       pkgs.getconf
-      pkgs.ht_can_pkg
       pkgs.htop
       pkgs.simple-http-server
       pkgs.v4l-utils

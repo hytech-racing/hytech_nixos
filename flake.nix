@@ -12,13 +12,11 @@
       url = "https://github.com/hytech-racing/drivebrain_simulink_models/releases/download/rel19/gen_rel.tar.gz";
       flake = false;
     };
-    
-    drivebrain-software.url = "github:hytech-racing/drivebrain_software";
-    drivebrain-software.inputs.ht_can.follows = "ht_can";
-    drivebrain-software.inputs.HT_proto.follows = "ht_proto";
-    drivebrain-software.inputs.db-simulink-gen-src.follows = "db-simulink-gen-src";
-    nix-proto.url = "github:notalltim/nix-proto";
-    drivebrain-software.inputs.nix-proto.follows = "nix-proto";
+
+    drivebrain_software_src = { 
+      url = "TODO";
+      flake = false;
+    };
 
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     nixpkgs.url = "github:NixOS/nixpkgs/cbd8ec4de4469333c82ff40d057350c30e9f7d36";
@@ -34,7 +32,7 @@
     nixos-shell.url = "github:Mic92/nixos-shell";
   };
 
-  outputs = { self, nixpkgs, raspberry-pi-nix, nixos-generators, home-manager, drivebrain-software, ... }@inputs: rec {
+  outputs = { self, nixpkgs, raspberry-pi-nix, nixos-generators, home-manager, drivebrain_software_src, ... }@inputs: rec {
 
     nixpkg_overlays =
       {
@@ -45,12 +43,6 @@
                 useQrencode = false;
               };
             })
-            drivebrain-software.overlays.default
-            drivebrain-software.inputs.easy_cmake.overlays.default
-            drivebrain-software.inputs.nebs-packages.overlays.default
-            drivebrain-software.inputs.vn_driver_lib.overlays.default
-            drivebrain-software.inputs.ht_can.overlays.default
-
           ];
       };
 
@@ -76,7 +68,10 @@
     nixosConfigurations.tcu = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
 
-      specialArgs = { inherit self; };
+      specialArgs = {
+        inherit self drivebrain_software_src;
+      };
+
       modules =
         hw_config_modules ++
         hytech_service_modules ++
