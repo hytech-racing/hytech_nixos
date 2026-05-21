@@ -14,7 +14,7 @@
     };
 
     drivebrain_software_src = { 
-      url = "TODO";
+      url = "github:hytech-racing/drivebrain_software_2026";
       flake = false;
     };
 
