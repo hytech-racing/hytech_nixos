@@ -38,6 +38,11 @@ in
     networking.can.enable = true;
 
 
+    services.udev.extraRules = ''
+      ACTION=="add", KERNEL=="ttyUSB0", MODE="0666", GROUP="dialout"
+      ACTION=="add", SUBSYSTEM=="usb-serial", KERNEL=="ttyUSB0", ATTR{latency_timer}="0"
+    '';
+
     # services.udev.extraRules = ''ACTION=="add", SUBSYSTEM=="net", KERNEL=="can*", DRIVERS=="kvaser_usb", ATTRS{idVendor}=="0bfd", ATTRS{idProduct}=="0110", NAME="can2", RUN+="${ipCmd} link set can2 up type can bitrate 500000 && ${ipCmd} link set up can2"'';
     networking.can.interfaces = {
       # can_kv = {
